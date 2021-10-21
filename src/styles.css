@@ -2,3 +2,72 @@
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   text-align: center;
 }
+
+.div1 {
+  margin-left: "25%";
+  margin-right: "25%";
+  height: "100px";
+}
+
+.wceimg {
+  height: 80px;
+  vertical-align: center;
+  float: center;
+  text-align: center;
+}
+
+.heading {
+  display: inline-block;
+  margin-top: 0;
+  margin-bottom: 0;
+  text-align: center;
+  vertical-align: center;
+}
+
+button {
+  margin: 0 1.5%;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  text-align: center;
+  background-color: #4caf50; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 5%;
+}
+
+.studentButton {
+  background-color: #0275d8; /* Green */
+}
+
+.facultyButton {
+  background-color: #ec971f;
+}
+
+.TPOButton {
+  background-color: #cc4233;
+}
+
+.studentButton:hover {
+  background-color: #0d6ca3;
+}
+
+.facultyButton:hover {
+  background-color: #c2861f;
+}
+
+.TPOButton:hover {
+  background-color: #bf2615;
+}
+
+.mainButtons {
+  margin-top: 10%;
+}
+
+footer {
+  margin-top: 25%;
+  text-align: center;
+}
