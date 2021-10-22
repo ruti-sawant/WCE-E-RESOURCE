@@ -9,7 +9,9 @@ export default function App() {
           src="https://uni.wcoeapps.in/site/static/images/wcoe.jpg"
           alt="wce"
         />
-        <h1 className="heading">WCE E-RESOURCE</h1>
+        <h1 style={{ color: "white" }} className="heading">
+          WCE E-RESOURCE
+        </h1>
       </div>
       <hr />
       <div className="mainButtons">
