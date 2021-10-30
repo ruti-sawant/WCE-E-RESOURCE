@@ -1,9 +1,10 @@
-import "./styles.css";
-
-export default function App() {
+import React from "react";
+import StudentLogin from "./StudentLogin";
+function App() {
   return (
     <div className="App">
       <div className="div1">
+        <StudentLogin />
         <img
           className="wceimg"
           src="https://uni.wcoeapps.in/site/static/images/wcoe.jpg"
@@ -23,3 +24,4 @@ export default function App() {
     </div>
   );
 }
+export default App;
