@@ -1,18 +1,38 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 import Navbar from "./Navbar";
 import "../SidebarStyles.css";
-function Sidebar2() {
+function Sidebar() {
   return (
-    <div>
+    <div className="sidebarMain">
+      <Navbar />
       <div className="sidebar">
-        <a className="active" href="#home">
+        <NavLink activeClassName="active" exact to="/StudentPage">
           Home
-        </a>
-        <a href="https://www.w3schools.com/">News</a>
-        <a href="#contact">Contact</a>
-        <a href="#about">About</a>
+        </NavLink>
+        <NavLink activeClassName="active" exact to="/profile">
+          Profile
+        </NavLink>
+        <NavLink activeClassName="active" exact to="/StudentPage/Resources">
+          Resources
+        </NavLink>
+        <NavLink activeClassName="active" exact to="/uploadResource">
+          Upload Resource
+        </NavLink>
+        <NavLink activeClassName="active" exact to="/placment">
+          Placement
+        </NavLink>
+        <NavLink activeClassName="active" exact to="/About">
+          About
+        </NavLink>
+        <NavLink activeClassName="active" exact to="/StudentPage/ContactUS">
+          Contact Us
+        </NavLink>
+        <NavLink activeClassName="active" exact to="/Logout">
+          Logout
+        </NavLink>
       </div>
-      <div className="content">
+      {/* <div className="content">
         <Navbar />
         <h2>Responsive Sidebar Example</h2>
         <p>
@@ -24,9 +44,9 @@ function Sidebar2() {
           which will vertically stack and center the navigation links.
         </p>
         <h3>Resize the browser window to see the effect.</h3>
-      </div>
+      </div> */}
     </div>
   );
 }
 
-export default Sidebar2;
+export default Sidebar;

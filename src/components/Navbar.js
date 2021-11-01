@@ -1,5 +1,5 @@
 import React from "react";
-
+import "../SidebarStyles.css";
 function Navbar() {
   return (
     <div>
