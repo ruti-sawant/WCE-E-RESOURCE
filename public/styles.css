@@ -33,7 +33,7 @@ button {
   margin: 0 1.5%;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   text-align: center;
-  background-color: #4caf50; /* Green */
+  background-color: #4caf50;
   border: none;
   color: white;
   padding: 15px 32px;
@@ -45,7 +45,7 @@ button {
 }
 
 .studentButton {
-  background-color: #0275d8; /* Green */
+  background-color: #0275d8;
 }
 
 .facultyButton {
