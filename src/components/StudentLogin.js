@@ -1,11 +1,18 @@
 import React from "react";
-
+import "./LoginStyles.css";
 function StudentLogin() {
   return (
-    <div>
-      <input placeholder="Username"></input>
-      <input placeholder="Password" type="password"></input>
-      <button>Submit</button>
+    <div className="login">
+      <h2 id="headerTitle">LOGIN</h2>
+      <form id="studentLoginForm">
+        <label>Username</label>
+        <input className="row " placeholder="Username"></input>
+        <label>Password</label>
+        <input className="row" placeholder="Password" type="password"></input>
+        <div id="button" class="row">
+          <button>Login</button>
+        </div>
+      </form>
     </div>
   );
 }

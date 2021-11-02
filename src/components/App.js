@@ -11,6 +11,8 @@ import {
 } from "react-router-dom";
 function App() {
   const [isStudentLogin, setStudentLogin] = useState(false);
+  const [isFacultyLogin, setFacultyLogin] = useState(false);
+  const [isTPOLogin, setTPOLogin] = useState(false);
 
   return (
     // <div className="Home">
@@ -40,14 +42,30 @@ function App() {
                 >
                   Student Login
                 </button>
-                <button className="facultyButton">Faculty Login</button>
-                <button className="TPOButton">TPO Login</button>
+                <button
+                  className="facultyButton"
+                  onClick={() => {
+                    setFacultyLogin(true);
+                  }}
+                >
+                  Faculty Login
+                </button>
+                <button
+                  className="TPOButton"
+                  onClick={() => {
+                    setTPOLogin(true);
+                  }}
+                >
+                  TPO Login
+                </button>
                 <footer>© Walchand College of Engineering, Sangli</footer>
               </div>
-              {isStudentLogin ? <Redirect to="/StudentLogin" /> : null}
+              {isStudentLogin ? <Redirect to="/Login" /> : null}
+              {isFacultyLogin ? <Redirect to="/Login" /> : null}
+              {isTPOLogin ? <Redirect to="/Login" /> : null}
             </div>
           </Route>
-          <Route exact path="/StudentLogin">
+          <Route exact path="/Login">
             <StudentLogin />
           </Route>
           <Route exact path="/StudentPage">
