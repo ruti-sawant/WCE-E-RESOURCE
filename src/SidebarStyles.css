@@ -92,3 +92,46 @@ div.content {
     float: none;
   }
 }
+
+.logout {
+  border: #0275d8;
+  border-style: solid;
+  border-width: 5px;
+  text-align: center;
+  /* background-color: yellow; */
+  margin-left: 20%;
+  margin-right: 20%;
+  margin-top: 2%;
+  padding-bottom: 2%;
+
+  /* margin-top: 25%;
+  margin-bottom: 25%; */
+}
+
+button {
+  margin: 0 1.5%;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  text-align: center;
+  background-color: #cc4233;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 5%;
+  cursor: pointer;
+}
+
+.logoutButton:hover {
+  background-color: #bf2615;
+}
+
+.cancel {
+  background-color: #4caf50;
+}
+
+.cancel:hover {
+  background-color: #3d8b3f;
+}

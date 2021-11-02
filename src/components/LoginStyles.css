@@ -1,11 +1,11 @@
 body {
-  background: #d1e8e4;
+  /* background: #d1e8e4; */
   /* background: linear-gradient(
     135deg,
     rgba(34, 193, 195, 1) 0%,
     rgba(253, 187, 45, 1) 100%
   ); */
-  font-family: "work sans";
+  font-family: "Verdana";
 }
 .login {
   text-align: center;
@@ -16,8 +16,9 @@ body {
   width: 30%;
   height: 60%;
   margin: 100px auto;
-  background-color: #ffffff;
+  background: #d1e8e4;
   border-radius: 25px;
+  /* background-color: white; */
 }
 #headerTitle {
   text-align: center;
@@ -32,6 +33,7 @@ body {
   align-items: center;
   padding-top: 2rem;
   max-width: 100%;
+  background: #d1e8e4;
 }
 input.row {
   text-align: center;

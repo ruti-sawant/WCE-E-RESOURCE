@@ -3,6 +3,7 @@ import StudentLogin from "./StudentLogin";
 import StudentPage from "./StudentPage";
 import Resources from "./Resources";
 import ContactUs from "./ContactUs";
+import Logout from "./Logout";
 import {
   BrowserRouter as Router,
   Route,
@@ -76,6 +77,9 @@ function App() {
           </Route>
           <Route exact path="/StudentPage/ContactUs">
             <ContactUs />
+          </Route>
+          <Route exact path="/StudentPage/Logout">
+            <Logout />
           </Route>
         </Switch>
       </Router>

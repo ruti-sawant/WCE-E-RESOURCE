@@ -10,41 +10,32 @@ function Sidebar() {
         <NavLink activeClassName="active" to="/StudentPage">
           Home
         </NavLink>
-        <NavLink activeClassName="active" to="/profile">
+        <NavLink activeClassName="active" to="/StudentPage/profile">
           Profile
         </NavLink>
         <NavLink activeClassName="active" to="/StudentPage/Resources">
           Resources
         </NavLink>
-        <NavLink activeClassName="active" exact to="/uploadResource">
+        <NavLink
+          activeClassName="active"
+          exact
+          to="/StudentPage/uploadResource"
+        >
           Upload Resource
         </NavLink>
-        <NavLink activeClassName="active" exact to="/placment">
+        <NavLink activeClassName="active" exact to="/StudentPage/placement">
           Placement
         </NavLink>
-        <NavLink activeClassName="active" exact to="/About">
+        <NavLink activeClassName="active" exact to="/StudentPage/About">
           About
         </NavLink>
         <NavLink activeClassName="active" to="/StudentPage/ContactUS">
           Contact Us
         </NavLink>
-        <NavLink activeClassName="active" exact to="/Logout">
+        <NavLink activeClassName="active" exact to="/StudentPage/Logout">
           Logout
         </NavLink>
       </div>
-      {/* <div className="content">
-        <Navbar />
-        <h2>Responsive Sidebar Example</h2>
-        <p>
-          This example use media queries to transform the sidebar to a top
-          navigation bar when the screen size is 700px or less.
-        </p>
-        <p>
-          We have also added a media query for screens that are 400px or less,
-          which will vertically stack and center the navigation links.
-        </p>
-        <h3>Resize the browser window to see the effect.</h3>
-      </div> */}
     </div>
   );
 }
