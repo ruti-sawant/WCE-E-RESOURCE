@@ -7,13 +7,13 @@ function Sidebar() {
     <div className="sidebarMain">
       <Navbar />
       <div className="sidebar">
-        <NavLink activeClassName="active" to="/StudentPage">
+        <NavLink activeClassName="active" exact to="/StudentPage">
           Home
         </NavLink>
-        <NavLink activeClassName="active" to="/StudentPage/profile">
+        <NavLink activeClassName="active" exact to="/StudentPage/profile">
           Profile
         </NavLink>
-        <NavLink activeClassName="active" to="/StudentPage/Resources">
+        <NavLink activeClassName="active" exact to="/StudentPage/Resources">
           Resources
         </NavLink>
         <NavLink
@@ -29,7 +29,7 @@ function Sidebar() {
         <NavLink activeClassName="active" exact to="/StudentPage/About">
           About
         </NavLink>
-        <NavLink activeClassName="active" to="/StudentPage/ContactUS">
+        <NavLink activeClassName="active" exact to="/StudentPage/ContactUS">
           Contact Us
         </NavLink>
         <NavLink activeClassName="active" exact to="/StudentPage/Logout">

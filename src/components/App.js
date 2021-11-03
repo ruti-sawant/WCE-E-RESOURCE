@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import StudentLogin from "./StudentLogin";
 import StudentPage from "./StudentPage";
 import Resources from "./Resources";
+import UploadResource from "./UploadResource";
+
 import ContactUs from "./ContactUs";
 import Logout from "./Logout";
 import {
@@ -80,6 +82,9 @@ function App() {
           </Route>
           <Route exact path="/StudentPage/Logout">
             <Logout />
+          </Route>
+          <Route exact path="/StudentPage/UploadResource">
+            <UploadResource />
           </Route>
         </Switch>
       </Router>
