@@ -152,12 +152,6 @@ button {
   margin-right: 25%;
 
   text-align: center;
-  /* max-width: 550px;
-  min-width: 300px;
-  max-height: 700px;
-  width: 550px;
-  height: 60%;
-  margin: 100px auto; */
 }
 
 .UploadResodiv2 {
@@ -182,10 +176,25 @@ button {
   text-align: center;
   /* width: 100%; */
   background-color: #ff6b6b;
+  /* background-color: red; */
+
   color: white;
   padding: 0.5rem;
   border-radius: 0.3rem;
   cursor: pointer;
   margin-top: 1rem;
   padding-top: 82px;
+  /* background-image: url("https://lh3.googleusercontent.com/d/1SidoBIKBTM4XgQpuPIB-K9ZuFztRkA-l=s220?authuser=0"); */
+  /* background-image: url("https://lh3.googleusercontent.com/d/1PjS4CWcgcMLi3y2b8KttNRRXpopo3Nox=s220?authuser=0"); */
+  background-image: url("https://lh3.googleusercontent.com/d/1IyhfNg0r7v7miDu5Nb8d0c6lEc0us04o=s220?authuser=0");
+  /* background-image: url("https://lh3.googleusercontent.com/d/1MhK8ScIhBRD58ukS-NKPO25U6IYr4rn6=s220?authuser=0"); */
+
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  margin-right: 25%;
+  margin-left: 25%;
+}
+
+.UploadResoLabel:hover {
+  background-color: red;
 }

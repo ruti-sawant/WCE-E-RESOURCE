@@ -77,3 +77,9 @@ footer {
   margin-top: 25%;
   text-align: center;
 }
+
+.selectRoom {
+  background-color: yellow;
+  color: yellow;
+  width: 50%;
+}
