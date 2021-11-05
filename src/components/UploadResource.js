@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Sidebar from "./Sidebar";
-
+import Select from "react-select";
 function UploadResource() {
   const [labelName, setLabelName] = useState("Upload Here");
 
@@ -23,6 +23,14 @@ function UploadResource() {
             id="uploadButton"
             className="UploadResoButton"
           />
+          <br />
+          <label htmlFor="fileName">Enter Name for file : </label>
+          <input type="text" id="fileName" required />
+          <br />
+          <br />
+          <Select />
+          <br />
+          <button>Upload</button>
         </div>
         <br />
         <br />
