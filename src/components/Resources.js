@@ -1,5 +1,6 @@
 import React from "react";
 import Sidebar from "./Sidebar";
+import ResoFolder from "./ResoFolder";
 
 function Resources() {
   return (
@@ -7,6 +8,22 @@ function Resources() {
       <Sidebar />
       <div className="content">
         <p>This is Resources page</p>
+        <ResoFolder />
+        <ResoFolder />
+        <ResoFolder />
+        <ResoFolder />
+        <ResoFolder />
+        <ResoFolder />
+        <ResoFolder />
+        <ResoFolder />
+        <ResoFolder />
+        <ResoFolder />
+        <ResoFolder />
+        <ResoFolder />
+        <ResoFolder />
+        <ResoFolder />
+        <ResoFolder />
+        <ResoFolder />
       </div>
     </div>
   );
