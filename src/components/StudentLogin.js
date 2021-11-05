@@ -5,12 +5,13 @@ function StudentLogin() {
     <div className="login">
       <h2 id="headerTitle">LOGIN</h2>
       <form id="studentLoginForm">
-        <label>Username</label>
+        {/* <label>Username</label> */}
         <input className="row " placeholder="Username"></input>
-        <label>Password</label>
+        {/* <label>Password</label> */}
         <input className="row" placeholder="Password" type="password"></input>
         <div id="button" class="row">
           <button>Login</button>
+          <br />
         </div>
       </form>
     </div>

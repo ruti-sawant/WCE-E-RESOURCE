@@ -93,8 +93,10 @@ div.content {
   }
 }
 
+/* All styles related to Logout page */
+
 .logout {
-  border: #0275d8;
+  border: #00751d;
   border-style: solid;
   border-width: 5px;
   text-align: center;
@@ -141,9 +143,21 @@ button {
 .UploadResodiv1 {
   width: 50%;
   /* background-color: red; */
-  display: inline-block;
-  height: 100px;
-  margin-top: 10px;
+  /* display: inline-block; */
+  /* height: 100px; */
+  /* margin-top: 10px;
+  text-align: center; */
+
+  margin-left: 25%;
+  margin-right: 25%;
+
+  text-align: center;
+  /* max-width: 550px;
+  min-width: 300px;
+  max-height: 700px;
+  width: 550px;
+  height: 60%;
+  margin: 100px auto; */
 }
 
 .UploadResodiv2 {
@@ -163,14 +177,15 @@ button {
 }
 
 .UploadResoLabel {
-  height: 100%;
+  height: 90px;
   display: block;
   text-align: center;
-  /**/
-  background-color: indigo;
+  /* width: 100%; */
+  background-color: #ff6b6b;
   color: white;
   padding: 0.5rem;
   border-radius: 0.3rem;
   cursor: pointer;
   margin-top: 1rem;
+  padding-top: 82px;
 }

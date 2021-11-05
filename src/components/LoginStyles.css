@@ -97,4 +97,5 @@ input.row:hover::-webkit-input-placeholder,
 
 #button {
   padding-bottom: 1.5 rem;
+  border-radius: 25px;
 }
