@@ -11,7 +11,8 @@ function ResoFolder() {
       }}
     >
       <img
-        src={require("./folder2.jpg")}
+        // src={require("./folder2.jpg")}
+        src="https://lh3.googleusercontent.com/d/1YJuoWBEdEQC4bwtpk7Qdq92cwRzw-XWD=s220?authuser=0"
         alt="img"
         width="100"
         height="100"
