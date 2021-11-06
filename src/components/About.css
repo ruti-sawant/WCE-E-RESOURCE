@@ -1,0 +1,10 @@
+.wceimg {
+  width: 50%;
+  height: 600px;
+  float: left;
+}
+.AboutContent {
+  width: 40%;
+  float: left;
+  padding: 20px;
+}

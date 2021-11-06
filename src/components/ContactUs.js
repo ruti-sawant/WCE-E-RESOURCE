@@ -10,11 +10,9 @@ function ContactUs() {
         <h2 style={{ textAlign: "center" }}>Contact Us </h2>
         <br />
         <br />
-        <br />
         <div className="first">
           <h4>
             <h3 style={{ textAlign: "center" }}>Postal Address</h3>
-            <br />
             <br />
             The Director Walchand College of Engineering , A/P: Vishrambag,
             Sangli - 416 415 Maharashtra, India Tel: +91-233-2300383
@@ -33,10 +31,18 @@ function ContactUs() {
             <table style={{ width: "100%" }}>
               <tr>
                 <td>
-                  <label>Your Name : </label>
+                  <label>Enter your PRN : </label>
                 </td>
                 <td>
-                  <input type="text" name="Your name : " />
+                  <input type="text" name="Prn" />
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <label>Enter your Name : </label>
+                </td>
+                <td>
+                  <input type="text" name="Name" />
                 </td>
               </tr>
               <tr>
@@ -44,7 +50,7 @@ function ContactUs() {
                   <label>Enter your email : </label>
                 </td>
                 <td>
-                  <input type="email" name="Your email : " />
+                  <input type="email" name="Email" />
                 </td>
               </tr>
               <tr>
@@ -52,11 +58,7 @@ function ContactUs() {
                   <label>Enter your message : </label>
                 </td>
                 <td>
-                  <textarea
-                    name="Your message : "
-                    rows="10"
-                    cols="30"
-                  ></textarea>
+                  <textarea name="Message" rows="10" cols="30"></textarea>
                 </td>
               </tr>
             </table>
@@ -68,7 +70,6 @@ function ContactUs() {
         <div className="second">
           <h3 style={{ textAlign: "center" }}>Contact Details</h3>
           <h4>
-            <br />
             <br />
             TPO :{" "}
             <a href="placement@walchandsangli.ac.in">

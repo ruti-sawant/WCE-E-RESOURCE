@@ -3,6 +3,7 @@ import StudentLogin from "./StudentLogin";
 import StudentPage from "./StudentPage";
 import Resources from "./Resources";
 import UploadResource from "./UploadResource";
+import About from "./About";
 
 import ContactUs from "./ContactUs";
 import Logout from "./Logout";
@@ -76,6 +77,9 @@ function App() {
           </Route>
           <Route exact path="/StudentPage/Resources">
             <Resources />
+          </Route>
+          <Route exact path="/StudentPage/About">
+            <About />
           </Route>
           <Route exact path="/StudentPage/ContactUs">
             <ContactUs />
