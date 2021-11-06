@@ -8,8 +8,9 @@ function UploadResource() {
     <div>
       <Sidebar />
       <div className="content">
-        <div className="UploadResodiv1">
-          <form>
+        {/* <div className="UploadResodiv1"> */}
+        <form>
+          <div className="UploadResodiv1">
             <h3 style={{ textAlign: "center" }}>Select a file ...</h3>
             <label
               className="UploadResoLabel"
@@ -29,6 +30,8 @@ function UploadResource() {
               className="UploadResoButton"
             />
             <br />
+          </div>
+          <div className="UploadResodiv2">
             <label htmlFor="fileName">Enter Name for file : </label>
             <input type="text" id="fileName" required />
             <br />
@@ -38,9 +41,10 @@ function UploadResource() {
             <br />
             <br />
             <button type="submit">Upload</button>
-          </form>
-        </div>
-        <br />
+          </div>
+        </form>
+        {/* </div> */}
+        {/* <br /> */}
         <div style={{ textAlign: "center" }}>
           <h3>Resources uploaded by you :-</h3>
           <ul style={{ display: "inline-block" }}>
