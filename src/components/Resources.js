@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Sidebar from "./Sidebar";
 import ResoFolder from "./ResoFolder";
 import Rooms from "./Rooms";
@@ -7,7 +7,6 @@ function Resources() {
   const [arr, setArr] = useState([]);
 
   function addNewFolder() {
-    // console.log("This also called");
     // setArr((arr) => arr.concat(<ResoFolder roomName="Nick" />));
     // console.log("arr", arr);
 
@@ -19,6 +18,8 @@ function Resources() {
   // for (let i = 0; i < Rooms.length; i++) {
   //   setArr((arr) => arr.concat(<ResoFolder roomName={Rooms[i]} />));
   // }
+
+  useEffect(addNewFolder, []);
 
   return (
     <div>
@@ -35,7 +36,6 @@ function Resources() {
         <ResoFolder roomName="SEM 8" />
         <ResoFolder roomName="CP" />
         <ResoFolder roomName="Robotics" />
-        {addNewFolder}
         <button onClick={addNewFolder}>Add</button>
         {arr}
       </div>
