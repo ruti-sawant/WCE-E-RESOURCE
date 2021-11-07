@@ -12,6 +12,8 @@ import {
   Redirect
 } from "react-router-dom";
 import About from "./About";
+import SubFolder from "./SubFolder";
+import Content from "./Content";
 
 function App() {
   const [isStudentLogin, setStudentLogin] = useState(false);
@@ -89,6 +91,12 @@ function App() {
           </Route>
           <Route exact path="/StudentPage/UploadResource">
             <UploadResource />
+          </Route>
+          <Route exact path="/StudentPage/Resources/subFolder">
+            <SubFolder />
+          </Route>
+          <Route exact path="/StudentPage/Resources/subFolder/:room">
+            <Content />
           </Route>
         </Switch>
       </Router>

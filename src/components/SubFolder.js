@@ -1,8 +1,15 @@
 import React, { useState } from "react";
+import Sidebar from "./Sidebar";
 import { Redirect } from "react-router-dom";
 
-function ResoFolder(props) {
+function InsideFolder(props) {
   const [click, setClick] = useState(false);
+
+  function goto() {
+    let routeUrl = "/StudentPage/Resources/subFolder/" + props.roomName;
+    console.log(routeUrl);
+    return <Redirect to={routeUrl} />;
+  }
 
   return (
     <div
@@ -24,7 +31,7 @@ function ResoFolder(props) {
           setClick(true);
         }}
       />
-      {click ? <Redirect to="/StudentPage/Resources/subFolder" /> : null}
+      {click ? goto() : null}
       <label
         style={{
           // for adding ellipsis
@@ -32,6 +39,8 @@ function ResoFolder(props) {
           // display: "inline-block",
           // overflow: "hidden",
           // whiteSpace: "nowrap",
+
+          textOverflow: "clip",
           maxWidth: "100px",
           maxHeight: "100px",
           height: "20px"
@@ -43,4 +52,21 @@ function ResoFolder(props) {
   );
 }
 
-export default ResoFolder;
+function SubFolder() {
+  return (
+    <div>
+      <Sidebar />
+      <div className="content">
+        <p>This is Inner folder of Resources page</p>
+        <InsideFolder roomName="CSE" />
+        <InsideFolder roomName="CIVIL" />
+        <InsideFolder roomName="MECH" />
+        <InsideFolder roomName="ELECTRICAL" />
+        <InsideFolder roomName="IT" />
+        <InsideFolder roomName="ELECTRONICS" />
+      </div>
+    </div>
+  );
+}
+
+export default SubFolder;
