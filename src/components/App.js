@@ -14,6 +14,7 @@ import {
 import About from "./About";
 import SubFolder from "./SubFolder";
 import Content from "./Content";
+import Profile from "./Profile";
 
 function App() {
   const [isStudentLogin, setStudentLogin] = useState(false);
@@ -76,6 +77,9 @@ function App() {
           </Route>
           <Route exact path="/StudentPage">
             <StudentPage />
+          </Route>
+          <Route exact path="/StudentPage/Profile">
+            <Profile />
           </Route>
           <Route exact path="/StudentPage/Resources">
             <Resources />
