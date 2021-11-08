@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import StudentLogin from "./StudentLogin";
 import StudentPage from "./StudentPage";
 import Resources from "./Resources";
-import UploadResource from "./UploadResource";
+import ShowYourResources from "./ShowYourResources";
 import ContactUs from "./ContactUs";
 import Logout from "./Logout";
 import {
@@ -13,7 +13,7 @@ import {
 } from "react-router-dom";
 import About from "./About";
 import SubFolder from "./SubFolder";
-import Content from "./Content";
+import MainContent from "./MainContent";
 import Profile from "./Profile";
 
 function App() {
@@ -93,14 +93,14 @@ function App() {
           <Route exact path="/StudentPage/Logout">
             <Logout />
           </Route>
-          <Route exact path="/StudentPage/UploadResource">
-            <UploadResource />
+          <Route exact path="/StudentPage/ShowYourResources">
+            <ShowYourResources />
           </Route>
           <Route exact path="/StudentPage/Resources/subFolder">
             <SubFolder />
           </Route>
           <Route exact path="/StudentPage/Resources/subFolder/:room">
-            <Content />
+            <MainContent />
           </Route>
         </Switch>
       </Router>

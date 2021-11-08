@@ -1,14 +1,19 @@
 import React, { useState } from "react";
+import { useParams } from "react-router";
 import Sidebar from "./Sidebar";
 import Select from "react-select";
-function UploadResource() {
+
+function MainContent() {
   const [labelName, setLabelName] = useState("Upload Here");
+
+  const { room } = useParams();
 
   return (
     <div>
       <Sidebar />
       <div className="content">
-        {/* <div className="UploadResodiv1"> */}
+        <h1>Hi in {room}</h1>
+        <hr />
         <form>
           <div className="UploadResodiv1">
             <h3 style={{ textAlign: "center" }}>Select a file ...</h3>
@@ -43,22 +48,9 @@ function UploadResource() {
             <button type="submit">Upload</button>
           </div>
         </form>
-        {/* </div> */}
-        {/* <br /> */}
-        <div style={{ textAlign: "center" }}>
-          <h3>Resources uploaded by you :-</h3>
-          <ul style={{ display: "inline-block" }}>
-            <li>Nikhil</li>
-            <li>Nikhil</li>
-            <li>Nikhil</li>
-            <li>Nikhil</li>
-            <li>Nikhil</li>
-            <li>Nikhil</li>
-          </ul>
-        </div>
       </div>
     </div>
   );
 }
 
-export default UploadResource;
+export default MainContent;

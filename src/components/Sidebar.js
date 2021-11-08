@@ -19,9 +19,9 @@ function Sidebar() {
         <NavLink
           activeClassName="active"
           exact
-          to="/StudentPage/uploadResource"
+          to="/StudentPage/ShowYourResources"
         >
-          Upload Resource
+          Your Resources
         </NavLink>
         <NavLink activeClassName="active" exact to="/StudentPage/placement">
           Placement
