@@ -1,36 +1,50 @@
 import React from "react";
 import Sidebar from "./Sidebar";
 import "./ShowYourResources.css";
-// import ShowYourResourcesCode from "./ShowYourResourcesCode";
 
 function ShowYourResourcesCode() {
   const resources = [
     {
-      srNO: "1222434343535353535522322",
+      srNO: "1",
       resourceName: "CNLab",
-      resourceLink: "abc"
+      view: "abc",
+      delete: "abc",
+      download: "abc",
+      date: "abc"
     },
     {
       srNO: "2",
       resourceName: "DAA",
-      resourceLink: "xyz"
+      resourceLink: "xyz",
+      view: "abc",
+      delete: "abc",
+      download: "abc",
+      date: "abc"
     }
   ];
 
   return (
     <div>
-      {/* <div className="showYourResources1">
-        <h4 style={{ display: "inline-block" }}>{resources[0].srNO}</h4>
-      </div>
-      <div className="showYourResources2">
-        <h4 style={{ display: "inline-block" }}>{resources[0].resourceName}</h4>
-      </div>
-      <div className="showYourResources3">
-        <h4 style={{ display: "inline-block" }}>{resources[0].resourceLink}</h4>
-      </div> */}
-      <table>
-        <tr></tr>
-      </table>
+      <tr>
+        <td style={{ textAlign: "center", width: "150px" }}>
+          {resources[0].srNO}
+        </td>
+        <td style={{ textAlign: "center", width: "500px" }}>
+          {resources[0].resourceName}
+        </td>
+        <td style={{ textAlign: "center", width: "500px" }}>
+          {resources[0].view}
+        </td>
+        <td style={{ textAlign: "center", width: "500px" }}>
+          {resources[0].delete}
+        </td>
+        <td style={{ textAlign: "center", width: "500px" }}>
+          {resources[0].download}
+        </td>
+        <td style={{ textAlign: "center", width: "500px" }}>
+          {resources[0].date}
+        </td>
+      </tr>
     </div>
   );
 }
@@ -46,11 +60,17 @@ function ShowYourResources() {
         <br />
         <table>
           <tr>
-            <th style={{ textAlign: "center", width: "10%" }}>SrNo</th>
-            <th style={{ textAlign: "center", width: "40%" }}>Resource Name</th>
-            <th style={{ textAlign: "center", width: "40%" }}>Resource Link</th>
+            <th style={{ textAlign: "center", width: "120px" }}>SrNo</th>
+            <th style={{ textAlign: "center", width: "500px" }}>
+              Resource Name
+            </th>
+            <th style={{ textAlign: "center", width: "500px" }}>View</th>
+            <th style={{ textAlign: "center", width: "500px" }}>Delete</th>
+            <th style={{ textAlign: "center", width: "500px" }}>Download</th>
+            <th style={{ textAlign: "center", width: "500px" }}>Date</th>
           </tr>
         </table>
+        <br />
         <ShowYourResourcesCode />
         <ShowYourResourcesCode />
         <ShowYourResourcesCode />
