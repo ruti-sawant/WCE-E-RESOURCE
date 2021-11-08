@@ -15,6 +15,7 @@ import About from "./About";
 import SubFolder from "./SubFolder";
 import MainContent from "./MainContent";
 import Profile from "./Profile";
+import Subjects from "./Subjects";
 
 function App() {
   const [isStudentLogin, setStudentLogin] = useState(false);
@@ -100,6 +101,9 @@ function App() {
             <SubFolder />
           </Route>
           <Route exact path="/StudentPage/Resources/subFolder/:room">
+            <Subjects />
+          </Route>
+          <Route exact path="/StudentPage/Resources/subFolder/:room/:sub">
             <MainContent />
           </Route>
         </Switch>

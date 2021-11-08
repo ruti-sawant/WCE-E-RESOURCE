@@ -7,9 +7,9 @@ function Sidebar() {
     <div className="sidebarMain">
       <Navbar />
       <div className="sidebar">
-        <NavLink activeClassName="active" exact to="/StudentPage">
+        {/* <NavLink activeClassName="active" exact to="/StudentPage">
           Home
-        </NavLink>
+        </NavLink> */}
         <NavLink activeClassName="active" exact to="/StudentPage/profile">
           Profile
         </NavLink>
