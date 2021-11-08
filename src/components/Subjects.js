@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Sidebar from "./Sidebar";
 import { useParams } from "react-router";
 import { Redirect } from "react-router-dom";
+import axios from "axios";
 
 function InsideSubject(props) {
   const [click, setClick] = useState(false);
@@ -56,13 +57,32 @@ function InsideSubject(props) {
 }
 
 function Subjects() {
+  const [arr, setArr] = useState([]);
+  const { branch, room } = useParams();
+  useEffect(() => {
+    axios
+      .get("http://localhost:3000/rooms/" + room + "/" + branch)
+      .then((data) => {
+        console.log(data.data);
+        const Subjects = data.data;
+        for (let i = 0; i < Subjects.length; i++) {
+          setArr((arr) =>
+            arr.concat(<InsideSubject subName={Subjects[i].subjectName} />)
+          );
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
   return (
     <div>
       <Sidebar />
       <div className="content">
-        <InsideSubject subName="OS" />
+        {/* <InsideSubject subName="OS" />
         <InsideSubject subName="CN" />
-        <InsideSubject subName="DBMS" />
+        <InsideSubject subName="DBMS" /> */}
+        {arr}
       </div>
     </div>
   );
