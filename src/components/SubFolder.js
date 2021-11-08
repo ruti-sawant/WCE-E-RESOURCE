@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import Sidebar from "./Sidebar";
 import { Redirect } from "react-router-dom";
+import { useParams } from "react-router";
 
 function InsideFolder(props) {
   const [click, setClick] = useState(false);
+  const { room } = useParams();
 
   function goto() {
-    let routeUrl = "/StudentPage/Resources/subFolder/" + props.roomName;
+    let routeUrl = "/StudentPage/Resources/" + room + "/" + props.branhName;
     console.log(routeUrl);
     return <Redirect to={routeUrl} />;
   }
@@ -46,7 +48,7 @@ function InsideFolder(props) {
           height: "20px"
         }}
       >
-        {props.roomName}
+        {props.branhName}
       </label>
     </div>
   );
@@ -58,12 +60,12 @@ function SubFolder() {
       <Sidebar />
       <div className="content">
         <p>This is Inner folder of Resources page</p>
-        <InsideFolder roomName="CSE" />
-        <InsideFolder roomName="CIVIL" />
-        <InsideFolder roomName="MECH" />
-        <InsideFolder roomName="ELECTRICAL" />
-        <InsideFolder roomName="IT" />
-        <InsideFolder roomName="ELECTRONICS" />
+        <InsideFolder branhName="CSE" />
+        <InsideFolder branhName="CIVIL" />
+        <InsideFolder branhName="MECH" />
+        <InsideFolder branhName="ELECTRICAL" />
+        <InsideFolder branhName="IT" />
+        <InsideFolder branhName="ELECTRONICS" />
       </div>
     </div>
   );

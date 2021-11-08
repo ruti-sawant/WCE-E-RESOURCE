@@ -6,14 +6,14 @@ import Select from "react-select";
 function MainContent() {
   const [labelName, setLabelName] = useState("Upload Here");
 
-  const { room, sub } = useParams();
+  const { branch, sub, room } = useParams();
 
   return (
     <div>
       <Sidebar />
       <div className="content">
         <h1>
-          Hi in {sub} in {room}
+          Hi in {sub} in {branch} in {room}
         </h1>
         <hr />
         <form>

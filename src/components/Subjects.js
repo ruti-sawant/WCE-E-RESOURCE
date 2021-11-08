@@ -5,11 +5,11 @@ import { Redirect } from "react-router-dom";
 
 function InsideSubject(props) {
   const [click, setClick] = useState(false);
-  const { room } = useParams();
+  const { branch, room } = useParams();
 
   function goto() {
     let routeUrl =
-      "/StudentPage/Resources/subFolder/" + room + "/" + props.subName;
+      "/StudentPage/Resources/" + room + "/" + branch + "/" + props.subName;
     console.log(routeUrl);
     return <Redirect to={routeUrl} />;
   }

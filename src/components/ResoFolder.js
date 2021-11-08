@@ -24,7 +24,9 @@ function ResoFolder(props) {
           setClick(true);
         }}
       />
-      {click ? <Redirect to="/StudentPage/Resources/subFolder" /> : null}
+      {click ? (
+        <Redirect to={"/StudentPage/Resources/" + props.roomName} />
+      ) : null}
       <label
         style={{
           // for adding ellipsis

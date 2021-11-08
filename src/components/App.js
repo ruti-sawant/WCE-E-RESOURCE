@@ -97,13 +97,13 @@ function App() {
           <Route exact path="/StudentPage/ShowYourResources">
             <ShowYourResources />
           </Route>
-          <Route exact path="/StudentPage/Resources/subFolder">
+          <Route exact path="/StudentPage/Resources/:room">
             <SubFolder />
           </Route>
-          <Route exact path="/StudentPage/Resources/subFolder/:room">
+          <Route exact path="/StudentPage/Resources/:room/:branch">
             <Subjects />
           </Route>
-          <Route exact path="/StudentPage/Resources/subFolder/:room/:sub">
+          <Route exact path="/StudentPage/Resources/:room/:branch/:sub">
             <MainContent />
           </Route>
         </Switch>
