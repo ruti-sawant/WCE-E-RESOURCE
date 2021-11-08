@@ -18,7 +18,11 @@ function Profile() {
         <div className="profileHeading">
           <h5>
             <br />
-            Name <br />
+            First Name <br />
+            <br />
+            <br />
+            <br />
+            Last Name <br />
             <br />
             <br />
             <br />
@@ -27,6 +31,14 @@ function Profile() {
             <br />
             <br />
             Email <br />
+            <br />
+            <br />
+            <br />
+            Phone <br />
+            <br />
+            <br />
+            <br />
+            Resources Uploaded <br />
             <br />
             <br />
             <br />
@@ -44,7 +56,17 @@ function Profile() {
               padding: "10px"
             }}
           >
-            Nikhil Danapgol
+            Nikhil
+          </h5>
+          <h5
+            style={{
+              borderStyle: "ridge ",
+              width: "75%",
+              display: "relative",
+              padding: "10px"
+            }}
+          >
+            Danapgol
           </h5>
           <h5
             style={{
@@ -65,6 +87,26 @@ function Profile() {
             }}
           >
             nikhil.danapgol@walchandsangli.ac.in
+          </h5>
+          <h5
+            style={{
+              borderStyle: "ridge ",
+              width: "75%",
+              display: "relative",
+              padding: "10px"
+            }}
+          >
+            9529172766
+          </h5>
+          <h5
+            style={{
+              borderStyle: "ridge ",
+              width: "75%",
+              display: "relative",
+              padding: "10px"
+            }}
+          >
+            5
           </h5>
           <h5
             style={{
