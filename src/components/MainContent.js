@@ -51,6 +51,7 @@ function MainContent() {
               id="uploadButton"
               className="UploadResoButton"
               name="uploadedFile"
+              required
             />
             <br />
           </div>
