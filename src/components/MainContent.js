@@ -4,6 +4,21 @@ import Sidebar from "./Sidebar";
 import Select from "react-select";
 
 function MainContent() {
+  function handleSubmit(event) {
+    event.preventDefault();
+    console.log("Submitted");
+
+    const fileName = event.target.fileName.value;
+    const file = event.target.uploadedFile.files[0];
+    console.log(fileName);
+    console.log(file);
+
+    const fd = new FormData();
+    fd.append("File", file, fileName);
+
+    // console.log(fd.getAll);
+  }
+
   const [labelName, setLabelName] = useState("Upload Here");
 
   const { branch, sub, room } = useParams();
@@ -16,7 +31,7 @@ function MainContent() {
           Hi in {sub} in {branch} in {room}
         </h1>
         <hr />
-        <form>
+        <form type="post" onSubmit={handleSubmit}>
           <div className="UploadResodiv1">
             <h3 style={{ textAlign: "center" }}>Select a file ...</h3>
             <label
@@ -35,12 +50,13 @@ function MainContent() {
               }}
               id="uploadButton"
               className="UploadResoButton"
+              name="uploadedFile"
             />
             <br />
           </div>
           <div className="UploadResodiv2">
             <label htmlFor="fileName">Enter Name for file : </label>
-            <input type="text" id="fileName" required />
+            <input type="text" id="fileName" name="fileName" required />
             <br />
             <br />
             <label>Select a room : </label>
