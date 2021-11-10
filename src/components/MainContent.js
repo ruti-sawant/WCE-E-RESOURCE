@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useParams } from "react-router";
 import Sidebar from "./Sidebar";
 import Select from "react-select";
-
+import axios from "axios";
 function MainContent() {
   function handleSubmit(event) {
     event.preventDefault();
@@ -14,8 +14,17 @@ function MainContent() {
     console.log(file);
 
     const fd = new FormData();
-    fd.append("File", file, fileName);
-
+    fd.append("fileToUpload", file, fileName);
+    axios
+      .post("http://localhost:3000/uploadFile", fd)
+      .then((res) => {
+        console.log("result", res);
+        console.log(res);
+        alert("File : " + fileName + " uploaded successfully !");
+      })
+      .catch((err) => {
+        console.log("error", err);
+      });
     // console.log(fd.getAll);
   }
 
