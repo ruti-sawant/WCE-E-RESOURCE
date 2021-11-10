@@ -3,7 +3,15 @@ import { useParams } from "react-router";
 import Sidebar from "./Sidebar";
 import Select from "react-select";
 import axios from "axios";
+
 function MainContent() {
+  function handleLinkSubmit(event) {
+    event.preventDefault();
+    const resoLink = event.target.resoLink.value;
+    const desc = event.target.desc.value;
+    console.log(resoLink, desc);
+  }
+
   function handleSubmit(event) {
     event.preventDefault();
     console.log("Submitted");
@@ -52,16 +60,13 @@ function MainContent() {
   }
 
   const [labelName, setLabelName] = useState("Upload Here");
-
   const { branch, sub, room } = useParams();
 
   return (
     <div>
       <Sidebar />
       <div className="content">
-        <h1>
-          Hi in {sub} in {branch} in {room}
-        </h1>
+        <h1>Upload a file</h1>
         <hr />
         <form type="post" onSubmit={handleSubmit}>
           <div className="UploadResodiv1">
@@ -92,11 +97,40 @@ function MainContent() {
             <input type="text" id="fileName" name="fileName" required />
             <br />
             <br />
-            <label>Select a room : </label>
-            <Select className="selectRoom" />
+            {/* <label>Select a room : </label>
+            <Select className="selectRoom" /> */}
+            <label>Location of upload : </label>
+            <input
+              type="text"
+              disabled
+              value={"StudentPage/Resources/" + room + "/" + branch + "/" + sub}
+            />
             <br />
             <br />
             <button type="submit">Upload</button>
+          </div>
+        </form>
+        <hr />
+        <h1>Upload a link</h1>
+
+        <form type="post" onSubmit={handleLinkSubmit}>
+          <div style={{ textAlign: "center" }}>
+            <label>Enter link for resource : </label>
+            <input
+              placeholder="e.g - https://xyz.com"
+              type="url"
+              name="resoLink"
+              required
+            />
+            <br />
+            <br />
+            <label>Enter description : </label>
+            <input placeholder="optional" type="text" name="desc" />
+            <br />
+            <br />
+            <button style={{ display: "inline-block" }} type="submit">
+              Upload
+            </button>
           </div>
         </form>
       </div>
