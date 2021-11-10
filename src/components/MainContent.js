@@ -8,18 +8,41 @@ function MainContent() {
     event.preventDefault();
     console.log("Submitted");
 
+    // file data
     const fileName = event.target.fileName.value;
     const file = event.target.uploadedFile.files[0];
     console.log(fileName);
     console.log(file);
 
+    //personal data
+    const author = {
+      name: "Harshal Kodgire",
+      PRN: "2019BTECS00029",
+      email: "a@b.com",
+      username: "harshal.kodgire@walchand"
+    };
+
     const fd = new FormData();
     fd.append("fileToUpload", file, fileName);
+
+    for (let item in author) {
+      // console.log(item, "-", author[item]);
+      fd.append(item, author[item]);
+    }
+
+    // route data
+    fd.append("room", room);
+    fd.append("branch", branch);
+    fd.append("subject", sub);
+
+    // console.log(fd);
+
     axios
       .post("http://localhost:3000/uploadFile", fd)
       .then((res) => {
         console.log("result", res);
-        console.log(res);
+        console.log(res.data);
+
         alert("File : " + fileName + " uploaded successfully !");
       })
       .catch((err) => {
