@@ -20,6 +20,7 @@ function DisplayReso(props) {
   } else {
     return (
       <div>
+        <p>{props.data.resourceName}</p>
         <p>{props.data.externalLink.description}</p>
         <a href={props.data.externalLink.link}>Link</a>
         <p>{props.data.author.name}</p>

@@ -1,21 +1,45 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Sidebar from "./Sidebar";
 import "./ShowYourResources.css";
+import axios from "axios";
 
-function ShowYourResourcesCode() {
+function DisplayReso(props) {
+  if (props.data.driveLink) {
+    return (
+      <div>
+        <p style={{ display: "inline-block" }}>
+          {props.data.resourceName + " : "}
+        </p>
+        <a href={props.data.driveLink.webViewLink}>view</a>
+        <a href={props.data.driveLink.webContentLink}>Download</a>
+        <p>{props.data.author.name}</p>
+        <p>{props.data.timestamp}</p>
+        <hr />
+      </div>
+    );
+  } else {
+    return (
+      <div>
+        <p>{props.data.resourceName}</p>
+        <p>{props.data.externalLink.description}</p>
+        <a href={props.data.externalLink.link}>Link</a>
+        <p>{props.data.author.name}</p>
+        <p>{props.data.timestamp}</p>
+        <hr />
+      </div>
+    );
+  }
+}
+
+// -------------------------------------------------------------------
+
+function ShowYourResourcesCode(props) {
+  console.log(props);
+
   const resources = [
     {
       srNO: "1",
-      resourceName: "CNLab",
-      view: "abc",
-      delete: "abc",
-      download: "abc",
-      date: "abc"
-    },
-    {
-      srNO: "2",
-      resourceName: "DAA",
-      resourceLink: "xyz",
+      resourceName: props.data.resourceName,
       view: "abc",
       delete: "abc",
       download: "abc",
@@ -49,7 +73,40 @@ function ShowYourResourcesCode() {
   );
 }
 
+// -------------------------------------------------------------------
+
 function ShowYourResources() {
+  const author = {
+    name: "Harshal Kodgire",
+    PRN: "2019BTECS00029",
+    email: "a@b.com",
+    username: "harshal.kodgire@walchand"
+  };
+
+  const [arr, setArr] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:3000/resources/users/" + author.username)
+      .then((data) => {
+        const RecievedResources = data.data;
+        // console.log(data.data);
+
+        // console.log(data.data[0].driveLink);
+
+        for (let i = 0; i < RecievedResources.length; i++) {
+          setArr((arr) =>
+            arr.concat(<ShowYourResourcesCode data={RecievedResources[i]} />)
+          );
+        }
+
+        //end
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
   return (
     <div>
       <Sidebar />
@@ -71,9 +128,10 @@ function ShowYourResources() {
           </tr>
         </table>
         <br />
+        {/* <ShowYourResourcesCode />
         <ShowYourResourcesCode />
-        <ShowYourResourcesCode />
-        <ShowYourResourcesCode />
+        <ShowYourResourcesCode /> */}
+        {arr}
       </div>
     </div>
   );
