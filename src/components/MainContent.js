@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useParams } from "react-router";
 import Sidebar from "./Sidebar";
-import Select from "react-select";
 import axios from "axios";
 
 function MainContent() {
@@ -9,6 +8,33 @@ function MainContent() {
     event.preventDefault();
     const resoLink = event.target.resoLink.value;
     const desc = event.target.desc.value;
+    const author = {
+      name: "Harshal Kodgire",
+      PRN: "2019BTECS00029",
+      email: "a@b.com",
+      username: "harshal.kodgire@walchand"
+    };
+
+    const fd = new FormData();
+    fd.append("link", resoLink);
+    fd.append("description", desc);
+
+    for (let item in author) {
+      fd.append(item, author[item]);
+    }
+
+    // route data
+    fd.append("room", room);
+    fd.append("branch", branch);
+    fd.append("subject", sub);
+    axios
+      .post("http://localhost:3000/uploadLink", fd)
+      .then((res) => {
+        console.log("result", res);
+      })
+      .catch((err) => {
+        console.log("error", err);
+      });
     console.log(resoLink, desc);
   }
 
