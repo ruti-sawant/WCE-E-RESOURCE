@@ -59,7 +59,7 @@ function SubFolder() {
   const { room } = useParams();
   useEffect(() => {
     axios
-      .get("http://localhost:3000/rooms/" + room)
+      .get("https://afternoon-ocean-57702.herokuapp.com/rooms/" + room)
       .then((data) => {
         console.log(data.data);
         const Branches = data.data;

@@ -21,7 +21,7 @@ function Resources() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3000/rooms")
+      .get("https://afternoon-ocean-57702.herokuapp.com/rooms")
       .then((data) => {
         console.log(data.data);
         const Rooms = data.data;

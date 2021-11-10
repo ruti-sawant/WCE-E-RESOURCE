@@ -87,7 +87,10 @@ function ShowYourResources() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3000/resources/users/" + author.username)
+      .get(
+        "https://afternoon-ocean-57702.herokuapp.com/resources/users/" +
+          author.username
+      )
       .then((data) => {
         const RecievedResources = data.data;
         // console.log(data.data);

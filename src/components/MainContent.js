@@ -126,7 +126,7 @@ function MainContent() {
     fd.append("branch", branch);
     fd.append("subject", sub);
     axios
-      .post("http://localhost:3000/uploadLink", fd)
+      .post("https://afternoon-ocean-57702.herokuapp.com/uploadLink", fd)
       .then((res) => {
         console.log("result", res);
       })
@@ -170,7 +170,7 @@ function MainContent() {
     // console.log(fd);
 
     axios
-      .post("http://localhost:3000/uploadFile", fd)
+      .post("https://afternoon-ocean-57702.herokuapp.com/uploadFile", fd)
       .then((res) => {
         console.log("result", res);
         console.log(res.data);
@@ -190,7 +190,7 @@ function MainContent() {
   useEffect(() => {
     axios
       .get(
-        "http://localhost:3000/resources/rooms/" +
+        "https://afternoon-ocean-57702.herokuapp.com/resources/rooms/" +
           room +
           "_" +
           branch +
