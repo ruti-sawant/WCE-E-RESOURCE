@@ -61,7 +61,12 @@ function Subjects() {
   const { branch, room } = useParams();
   useEffect(() => {
     axios
-      .get("http://localhost:3000/rooms/" + room + "/" + branch)
+      .get(
+        "https://afternoon-ocean-57702.herokuapp.com/rooms/" +
+          room +
+          "/" +
+          branch
+      )
       .then((data) => {
         console.log(data.data);
         const Subjects = data.data;
