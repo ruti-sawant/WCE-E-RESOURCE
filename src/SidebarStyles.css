@@ -199,3 +199,18 @@ button {
 .UploadResoLabel:hover {
   background-color: red;
 }
+
+.ResoDisplay {
+  margin: 0.5% 1.5%;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  text-align: center;
+  background-color: #cc4233;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 5%;
+}

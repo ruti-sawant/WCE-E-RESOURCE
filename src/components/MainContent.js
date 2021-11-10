@@ -6,26 +6,94 @@ import axios from "axios";
 function DisplayReso(props) {
   if (props.data.driveLink) {
     return (
-      <div>
-        <p style={{ display: "inline-block" }}>
-          {props.data.resourceName + " : "}
-        </p>
-        <a href={props.data.driveLink.webViewLink}>view</a>
-        <a href={props.data.driveLink.webContentLink}>Download</a>
-        <p>{props.data.author.name}</p>
-        <p>{props.data.timestamp}</p>
-        <hr />
+      <div
+        style={
+          {
+            // height: "105px"
+            // display: "inline-block"
+            //   borderStyle: "solid",
+            //   borderWidth: "1px"
+          }
+        }
+      >
+        <img
+          // src={require("./folder2.jpg")}
+          src="https://lh3.googleusercontent.com/d/1jkOCUuvYogTvKOLB9Bo8cQ1-MQ8G3tgc=s220?authuser=0"
+          alt="img"
+          width="100"
+          height="100"
+          onClick={() => {
+            console.log("Folder opened");
+          }}
+          style={{ display: "inline-block", float: "left" }}
+        />
+        <br />
+        <div /*style={{ display: "inline-block" }}*/>
+          <p className="ResoDisplay" style={{ display: "inline-block" }}>
+            Name : {props.data.resourceName}
+          </p>
+          {/* <br /> */}
+          <a
+            className="ResoDisplay"
+            href={props.data.driveLink.webViewLink}
+            style={{ color: "white" }}
+          >
+            view
+          </a>
+          {/* <br /> */}
+          <a
+            className="ResoDisplay"
+            href={props.data.driveLink.webContentLink}
+            style={{ color: "white" }}
+          >
+            Download
+          </a>
+          <p className="ResoDisplay" style={{ display: "inline-block" }}>
+            Author : {props.data.author.name}
+          </p>
+          <p className="ResoDisplay" style={{ display: "inline-block" }}>
+            Date : {props.data.timestamp}
+          </p>
+        </div>
+        <br />
+        <br />
       </div>
     );
   } else {
     return (
       <div>
-        <p>{props.data.resourceName}</p>
-        <p>{props.data.externalLink.description}</p>
-        <a href={props.data.externalLink.link}>Link</a>
-        <p>{props.data.author.name}</p>
-        <p>{props.data.timestamp}</p>
-        <hr />
+        <img
+          src="https://lh3.googleusercontent.com/d/1eGHyj9KwZgCdH8grZEpEAE2AK6f4EVX7=s220?authuser=0"
+          alt="img"
+          width="100"
+          height="100"
+          onClick={() => {
+            console.log("Folder opened");
+          }}
+          style={{ display: "inline-block", float: "left" }}
+        />
+        <br />
+        <div>
+          <p className="ResoDisplay" style={{ display: "inline-block" }}>
+            Name : {props.data.resourceName}
+          </p>
+          {/* <p>{props.data.externalLink.description}</p> */}
+          <a
+            href={props.data.externalLink.link}
+            className="ResoDisplay"
+            style={{ display: "inline-block" }}
+          >
+            Link
+          </a>
+          <p className="ResoDisplay" style={{ display: "inline-block" }}>
+            Author : {props.data.author.name}
+          </p>
+          <p className="ResoDisplay" style={{ display: "inline-block" }}>
+            {props.data.timestamp}
+          </p>
+        </div>
+        <br />
+        <br />
       </div>
     );
   }
@@ -154,7 +222,7 @@ function MainContent() {
     <div>
       <Sidebar />
       <div className="content">
-        {arr}
+        {/* {arr} */}
         <h1>Upload a file</h1>
         <hr />
         <form type="post" onSubmit={handleSubmit}>
@@ -199,8 +267,8 @@ function MainContent() {
             <button type="submit">Upload</button>
           </div>
         </form>
-        <hr />
         <h1>Upload a link</h1>
+        <hr />
 
         <form type="post" onSubmit={handleLinkSubmit}>
           <div style={{ textAlign: "center" }}>
@@ -231,6 +299,10 @@ function MainContent() {
             </button>
           </div>
         </form>
+        <br />
+        <h1>Resources</h1>
+        <hr />
+        {arr}
       </div>
     </div>
   );
