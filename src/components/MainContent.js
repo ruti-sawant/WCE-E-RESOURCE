@@ -1,13 +1,41 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useParams } from "react-router";
 import Sidebar from "./Sidebar";
 import axios from "axios";
+
+function DisplayReso(props) {
+  if (props.data.driveLink) {
+    return (
+      <div>
+        <p style={{ display: "inline-block" }}>
+          {props.data.resourceName + " : "}
+        </p>
+        <a href={props.data.driveLink.webViewLink}>view</a>
+        <a href={props.data.driveLink.webContentLink}>Download</a>
+        <p>{props.data.author.name}</p>
+        <p>{props.data.timestamp}</p>
+        <hr />
+      </div>
+    );
+  } else {
+    return (
+      <div>
+        <p>{props.data.externalLink.description}</p>
+        <a href={props.data.externalLink.link}>Link</a>
+        <p>{props.data.author.name}</p>
+        <p>{props.data.timestamp}</p>
+        <hr />
+      </div>
+    );
+  }
+}
 
 function MainContent() {
   function handleLinkSubmit(event) {
     event.preventDefault();
     const resoLink = event.target.resoLink.value;
     const desc = event.target.desc.value;
+    const linkName = event.target.linkName.value;
     const author = {
       name: "Harshal Kodgire",
       PRN: "2019BTECS00029",
@@ -17,6 +45,7 @@ function MainContent() {
 
     const fd = new FormData();
     fd.append("link", resoLink);
+    fd.append("linkName", linkName);
     fd.append("description", desc);
 
     for (let item in author) {
@@ -87,11 +116,44 @@ function MainContent() {
 
   const [labelName, setLabelName] = useState("Upload Here");
   const { branch, sub, room } = useParams();
+  const [arr, setArr] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get(
+        "http://localhost:3000/resources/rooms/" +
+          room +
+          "_" +
+          branch +
+          "_" +
+          sub
+      )
+      .then((data) => {
+        const RecievedResources = data.data;
+        console.log(data.data);
+
+        // console.log(data.data[0].driveLink);
+
+        for (let i = 0; i < RecievedResources.length; i++) {
+          setArr((arr) =>
+            // arr.concat(<ResoFolder roomName={Rooms[i].roomName} />)
+            // arr.concat(<h1>{RecievedResources[i].driveLink.webViewLink}</h1>)
+            arr.concat(<DisplayReso data={RecievedResources[i]} />)
+          );
+        }
+
+        //end
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
 
   return (
     <div>
       <Sidebar />
       <div className="content">
+        {arr}
         <h1>Upload a file</h1>
         <hr />
         <form type="post" onSubmit={handleSubmit}>
@@ -146,6 +208,15 @@ function MainContent() {
               placeholder="e.g - https://xyz.com"
               type="url"
               name="resoLink"
+              required
+            />
+            <br />
+            <br />
+            <label>Enter Name : </label>
+            <input
+              placeholder="Short Name about link"
+              type="text"
+              name="linkName"
               required
             />
             <br />
