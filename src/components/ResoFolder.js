@@ -30,10 +30,10 @@ function ResoFolder(props) {
       <label
         style={{
           // for adding ellipsis
-          // textOverflow: "ellipsis",
-          // display: "inline-block",
-          // overflow: "hidden",
-          // whiteSpace: "nowrap",
+          textOverflow: "ellipsis",
+          display: "inline-block",
+          overflow: "hidden",
+          whiteSpace: "nowrap",
           maxWidth: "100px",
           maxHeight: "100px",
           height: "20px"

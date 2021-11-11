@@ -42,6 +42,10 @@ function AddNewFolder(props) {
       />
       <label
         style={{
+          textOverflow: "ellipsis",
+          display: "inline-block",
+          overflow: "hidden",
+          whiteSpace: "nowrap",
           maxWidth: "100px",
           maxHeight: "100px",
           height: "20px"
