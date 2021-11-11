@@ -5,40 +5,35 @@ import axios from "axios";
 
 function ShowYourResourcesCode(props) {
   function handleDelete() {
-    console.log("Deleted");
-    console.log(resources[0].srNO);
-    console.log(resources[0].idObj);
-
     const receivedObj = resources[0].idObj;
 
-    console.log(receivedObj);
+    let tempRoute = "";
 
-    const fd = new FormData();
-
-    let count = 0,
-      tempRoute = "";
-    for (let attr in receivedObj) {
-      // console.log(attr, receivedObj[attr]);
-      fd.append(attr, receivedObj[attr]);
-      count++;
+    const dataToSend = {};
+    if (receivedObj.driveId) {
+      tempRoute = "uploadFile";
+      dataToSend.mongoId = receivedObj.mongoId;
+      dataToSend.driveId = receivedObj.driveId;
+    } else {
+      tempRoute = "uploadLink";
+      dataToSend.mongoId = receivedObj.mongoId;
     }
 
-    if (count === 1) tempRoute = "uploadLink";
-    else tempRoute = "uploadFile";
-
     axios
-      .delete("https://afternoon-ocean-57702.herokuapp.com/" + tempRoute, fd)
+      .delete("https://afternoon-ocean-57702.herokuapp.com/" + tempRoute, {
+        data: dataToSend
+      })
       .then((data) => {
-        console.log("Deleted sucessfully");
         console.log(data);
         alert("Deleted resource successsfully");
+        window.location.reload();
       })
       .catch((err) => {
         console.log(err);
       });
+    //to reload currentPage
   }
 
-  console.log(props);
   const resources = [
     {
       srNO: props.srNO,
