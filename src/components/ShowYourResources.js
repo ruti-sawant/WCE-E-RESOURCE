@@ -3,72 +3,119 @@ import Sidebar from "./Sidebar";
 import "./ShowYourResources.css";
 import axios from "axios";
 
-function DisplayReso(props) {
-  if (props.data.driveLink) {
-    return (
-      <div>
-        <p style={{ display: "inline-block" }}>
-          {props.data.resourceName + " : "}
-        </p>
-        <a href={props.data.driveLink.webViewLink}>view</a>
-        <a href={props.data.driveLink.webContentLink}>Download</a>
-        <p>{props.data.author.name}</p>
-        <p>{props.data.timestamp}</p>
-        <hr />
-      </div>
-    );
-  } else {
-    return (
-      <div>
-        <p>{props.data.resourceName}</p>
-        <p>{props.data.externalLink.description}</p>
-        <a href={props.data.externalLink.link}>Link</a>
-        <p>{props.data.author.name}</p>
-        <p>{props.data.timestamp}</p>
-        <hr />
-      </div>
-    );
-  }
-}
-
-// -------------------------------------------------------------------
-
 function ShowYourResourcesCode(props) {
   console.log(props);
-
   const resources = [
     {
       srNO: "1",
       resourceName: props.data.resourceName,
-      view: "abc",
+      view: props.data.driveLink ? (
+        <a href={props.data.driveLink.webViewLink}>View</a>
+      ) : (
+        <a href={props.data.externalLink.link}>View</a>
+      ),
       delete: "abc",
-      download: "abc",
-      date: "abc"
+      download: props.data.driveLink ? (
+        <a href={props.data.driveLink.webContentLink}>Download</a>
+      ) : (
+        "-"
+      ),
+      date: props.data.timestamp,
+      room: props.data.room
     }
   ];
 
   return (
     <div>
       <tr>
-        <td style={{ textAlign: "center", width: "150px" }}>
+        <br />
+        <td
+          style={{
+            textAlign: "center",
+            width: "180px",
+            textOverflow: "ellipsis",
+            display: "inline-block",
+            overflow: "hidden",
+            whiteSpace: "nowrap"
+          }}
+        >
           {resources[0].srNO}
         </td>
-        <td style={{ textAlign: "center", width: "500px" }}>
+        <td
+          style={{
+            textAlign: "center",
+            width: "180px",
+            textOverflow: "ellipsis",
+            display: "inline-block",
+            overflow: "hidden",
+            whiteSpace: "nowrap"
+          }}
+        >
           {resources[0].resourceName}
         </td>
-        <td style={{ textAlign: "center", width: "500px" }}>
+        <td
+          style={{
+            textAlign: "center",
+            width: "180px",
+            textOverflow: "ellipsis",
+            display: "inline-block",
+            overflow: "hidden",
+            whiteSpace: "nowrap"
+          }}
+        >
           {resources[0].view}
         </td>
-        <td style={{ textAlign: "center", width: "500px" }}>
+
+        <td
+          style={{
+            textAlign: "center",
+            width: "180px",
+            textOverflow: "ellipsis",
+            display: "inline-block",
+            overflow: "hidden",
+            whiteSpace: "nowrap"
+          }}
+        >
           {resources[0].delete}
         </td>
-        <td style={{ textAlign: "center", width: "500px" }}>
+        <td
+          style={{
+            textAlign: "center",
+            width: "180px",
+            textOverflow: "ellipsis",
+            display: "inline-block",
+            overflow: "hidden",
+            whiteSpace: "nowrap"
+          }}
+        >
           {resources[0].download}
         </td>
-        <td style={{ textAlign: "center", width: "500px" }}>
+        <td
+          style={{
+            textAlign: "center",
+            width: "180px",
+            textOverflow: "ellipsis",
+            display: "inline-block",
+            overflow: "hidden",
+            whiteSpace: "nowrap"
+          }}
+        >
           {resources[0].date}
         </td>
+        <td
+          style={{
+            textAlign: "center",
+            width: "180px",
+            textOverflow: "ellipsis",
+            display: "inline-block",
+            overflow: "hidden",
+            whiteSpace: "nowrap"
+          }}
+        >
+          {resources[0].room}
+        </td>
       </tr>
+      <hr />
     </div>
   );
 }
@@ -93,17 +140,12 @@ function ShowYourResources() {
       )
       .then((data) => {
         const RecievedResources = data.data;
-        // console.log(data.data);
-
-        // console.log(data.data[0].driveLink);
 
         for (let i = 0; i < RecievedResources.length; i++) {
           setArr((arr) =>
             arr.concat(<ShowYourResourcesCode data={RecievedResources[i]} />)
           );
         }
-
-        //end
       })
       .catch((err) => {
         console.log(err);
@@ -118,88 +160,99 @@ function ShowYourResources() {
           Resources uploaded by you :-
         </h2>
         <br />
-        <table>
-          <tr>
-            <th style={{ textAlign: "center", width: "120px" }}>SrNo</th>
-            <th style={{ textAlign: "center", width: "500px" }}>
-              Resource Name
-            </th>
-            <th style={{ textAlign: "center", width: "500px" }}>View</th>
-            <th style={{ textAlign: "center", width: "500px" }}>Delete</th>
-            <th style={{ textAlign: "center", width: "500px" }}>Download</th>
-            <th style={{ textAlign: "center", width: "500px" }}>Date</th>
-          </tr>
-        </table>
-        <br />
-        {/* <ShowYourResourcesCode />
-        <ShowYourResourcesCode />
-        <ShowYourResourcesCode /> */}
+        <tr>
+          <td
+            style={{
+              textAlign: "center",
+              width: "180px",
+              textOverflow: "ellipsis",
+              display: "inline-block",
+              overflow: "hidden",
+              whiteSpace: "nowrap"
+            }}
+          >
+            SrNo
+          </td>
+          <td
+            style={{
+              textAlign: "center",
+              width: "180px",
+              textOverflow: "ellipsis",
+              display: "inline-block",
+              overflow: "hidden",
+              whiteSpace: "nowrap"
+            }}
+          >
+            Resource Name
+          </td>
+          <td
+            style={{
+              textAlign: "center",
+              width: "180px",
+              textOverflow: "ellipsis",
+              display: "inline-block",
+              overflow: "hidden",
+              whiteSpace: "nowrap"
+            }}
+          >
+            View
+          </td>
+          <td
+            style={{
+              textAlign: "center",
+              width: "180px",
+              textOverflow: "ellipsis",
+              display: "inline-block",
+              overflow: "hidden",
+              whiteSpace: "nowrap"
+            }}
+          >
+            Delete
+          </td>
+          <td
+            style={{
+              textAlign: "center",
+              width: "180px",
+              textOverflow: "ellipsis",
+              display: "inline-block",
+              overflow: "hidden",
+              whiteSpace: "nowrap"
+            }}
+          >
+            Download
+          </td>
+          <td
+            style={{
+              textAlign: "center",
+              width: "180px",
+              textOverflow: "ellipsis",
+              display: "inline-block",
+              overflow: "hidden",
+              whiteSpace: "nowrap"
+            }}
+          >
+            Date
+          </td>
+          <td
+            style={{
+              textAlign: "center",
+              width: "180px",
+              textOverflow: "ellipsis",
+              display: "inline-block",
+              overflow: "hidden",
+              whiteSpace: "nowrap"
+            }}
+          >
+            Room
+          </td>
+        </tr>
+        <hr />
         {arr}
+
+        <br />
       </div>
     </div>
   );
 }
 
 export default ShowYourResources;
-
-// function UploadResource() {
-//   const [labelName, setLabelName] = useState("Upload Here");
-
-//   return (
-//     <div>
-//       <Sidebar />
-//       <div className="content">
-//         {/* <div className="UploadResodiv1"> */}
-//         <form>
-//           <div className="UploadResodiv1">
-//             <h3 style={{ textAlign: "center" }}>Select a file ...</h3>
-//             <label
-//               className="UploadResoLabel"
-//               htmlFor="uploadButton"
-//               // style={{ backgroundImage: "url(./upload2.png)" }}
-//             >
-//               {labelName}
-//             </label>
-//             <input
-//               type="file"
-//               hidden
-//               onChange={(event) => {
-//                 if (event.target.files[0].name)
-//                   setLabelName(event.target.files[0].name);
-//               }}
-//               id="uploadButton"
-//               className="UploadResoButton"
-//             />
-//             <br />
-//           </div>
-//           <div className="UploadResodiv2">
-//             <label htmlFor="fileName">Enter Name for file : </label>
-//             <input type="text" id="fileName" required />
-//             <br />
-//             <br />
-//             <label>Select a room : </label>
-//             <Select className="selectRoom" />
-//             <br />
-//             <br />
-//             <button type="submit">Upload</button>
-//           </div>
-//         </form>
-//         {/* </div> */}
-//         {/* <br /> */}
-//         <div style={{ textAlign: "center" }}>
-//           <h3>Resources uploaded by you :-</h3>
-//           <ul style={{ display: "inline-block" }}>
-//             <li>Nikhil</li>
-//             <li>Nikhil</li>
-//             <li>Nikhil</li>
-//             <li>Nikhil</li>
-//             <li>Nikhil</li>
-//             <li>Nikhil</li>
-//           </ul>
-//         </div>
-//       </div>
-//     </div>
-//   );
-// }
-
-// export default UploadResource;
