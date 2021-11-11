@@ -33,7 +33,7 @@ function AddNewFolder(props) {
                 console.log("result", res);
                 // console.log(res.data);
                 alert("Room : " + roomName + " created successfully !");
-                window.location.reload(true);
+                window.location.reload();
               })
               .catch((err) => {
                 console.log("error", err);

@@ -130,6 +130,7 @@ function MainContent() {
       .then((res) => {
         console.log("result", res);
         alert("Link uploaded successfully");
+        window.location.reload();
       })
       .catch((err) => {
         console.log("error", err);
@@ -175,8 +176,8 @@ function MainContent() {
       .then((res) => {
         console.log("result", res);
         console.log(res.data);
-
         alert("File : " + fileName + " uploaded successfully !");
+        window.location.reload();
       })
       .catch((err) => {
         console.log("error", err);
