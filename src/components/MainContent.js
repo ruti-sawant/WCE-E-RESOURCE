@@ -106,10 +106,10 @@ function MainContent() {
     const desc = event.target.desc.value;
     const linkName = event.target.linkName.value;
     const author = {
-      name: "Harshal Kodgire",
-      PRN: "2019BTECS00029",
+      name: "Nikhil Danapgol",
+      PRN: "2019BTECS00036",
       email: "a@b.com",
-      username: "harshal.kodgire@walchand"
+      username: "nick"
     };
 
     const fd = new FormData();
@@ -129,6 +129,7 @@ function MainContent() {
       .post("https://afternoon-ocean-57702.herokuapp.com/uploadLink", fd)
       .then((res) => {
         console.log("result", res);
+        alert("Link uploaded successfully");
       })
       .catch((err) => {
         console.log("error", err);

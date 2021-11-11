@@ -22,7 +22,7 @@ function AddNewFolder(props) {
           console.log(roomName);
           console.log(props);
 
-          if (roomName !== "") {
+          if (roomName !== "" && roomName !== null) {
             axios
               .post(
                 "https://afternoon-ocean-57702.herokuapp.com/rooms/" +
@@ -33,6 +33,7 @@ function AddNewFolder(props) {
                 console.log("result", res);
                 // console.log(res.data);
                 alert("Room : " + roomName + " created successfully !");
+                window.location.reload(true);
               })
               .catch((err) => {
                 console.log("error", err);

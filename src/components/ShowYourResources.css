@@ -1,3 +1,15 @@
 table {
   border-collapse: collapse;
 }
+
+.ShowYourResources_td {
+  text-align: center;
+  width: 180px;
+  text-overflow: ellipsis;
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+  /* border-style: inset;
+  border-collapse: collapse;
+  border-width: 0.5px; */
+}
