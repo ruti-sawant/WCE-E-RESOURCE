@@ -1,6 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
+import axios from "axios";
 
 function AddNewFolder(props) {
+  const [showInput, setShowInput] = useState(true);
+
   return (
     <div
       style={{
@@ -17,6 +20,24 @@ function AddNewFolder(props) {
         height="100"
         onClick={() => {
           console.log("Add new Folder clicked");
+          const roomName = prompt("Enter the name for new room : ");
+          console.log(roomName);
+          console.log(props);
+
+          axios
+            .post(
+              "https://afternoon-ocean-57702.herokuapp.com/rooms/" +
+                props.route +
+                roomName
+            )
+            .then((res) => {
+              console.log("result", res);
+              // console.log(res.data);
+              alert("Room : " + roomName + " created successfully !");
+            })
+            .catch((err) => {
+              console.log("error", err);
+            });
         }}
       />
       <label
@@ -29,6 +50,7 @@ function AddNewFolder(props) {
         {props.Name}
       </label>
     </div>
+    // {showInput ? <input type="text" /> : null}
   );
 }
 

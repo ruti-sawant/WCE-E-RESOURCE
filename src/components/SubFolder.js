@@ -3,6 +3,8 @@ import Sidebar from "./Sidebar";
 import { Redirect } from "react-router-dom";
 import { useParams } from "react-router";
 import axios from "axios";
+import AddNewFolder from "./AddNewFolder";
+
 function InsideFolder(props) {
   const [click, setClick] = useState(false);
   const { room } = useParams();
@@ -85,6 +87,7 @@ function SubFolder() {
         <InsideFolder branhName="IT" />
         <InsideFolder branhName="ELECTRONICS" /> */}
         {arr}
+        <AddNewFolder Name="Add" route={room + "/"} />
       </div>
     </div>
   );

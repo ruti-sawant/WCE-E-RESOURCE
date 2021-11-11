@@ -43,7 +43,7 @@ function Resources() {
       <div className="content">
         <p>This is Resources page</p>
         {arr}
-        <AddNewFolder Name="Add" route="none" />
+        <AddNewFolder Name="Add" route="" />
       </div>
     </div>
   );

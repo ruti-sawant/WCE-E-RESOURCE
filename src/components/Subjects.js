@@ -3,6 +3,7 @@ import Sidebar from "./Sidebar";
 import { useParams } from "react-router";
 import { Redirect } from "react-router-dom";
 import axios from "axios";
+import AddNewFolder from "./AddNewFolder";
 
 function InsideSubject(props) {
   const [click, setClick] = useState(false);
@@ -88,6 +89,7 @@ function Subjects() {
         <InsideSubject subName="CN" />
         <InsideSubject subName="DBMS" /> */}
         {arr}
+        <AddNewFolder Name="Add" route={room + "/" + branch + "/"} />
       </div>
     </div>
   );
