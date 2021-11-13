@@ -2,11 +2,12 @@ import React from "react";
 import Sidebar from "./TPOSlideBar";
 import "../About.css";
 import { Link } from "react-router-dom";
-
+// import TPONotification from "./TPONotification";
 function About() {
   return (
     <div>
       <Sidebar />
+      {/* <TPONotification /> */}
       <div className="content">
         <h2 style={{ textAlign: "center" }}>About </h2>
         <img
