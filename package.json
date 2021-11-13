@@ -6,8 +6,10 @@
   "main": "src/index.js",
   "dependencies": {
     "axios": "0.24.0",
+    "mdb-react-ui-kit": "1.6.0",
     "mdbreact": "5.1.0",
     "react": "17.0.2",
+    "react-bootstrap": "2.0.2",
     "react-copyright": "0.0.1",
     "react-dom": "17.0.2",
     "react-scripts": "4.0.0",
@@ -23,5 +25,10 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
-  "browserslist": [">0.2%", "not dead", "not ie <= 11", "not op_mini all"]
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
 }
