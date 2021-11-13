@@ -16,13 +16,6 @@ import SubFolder from "./SubFolder";
 import MainContent from "./MainContent";
 import Profile from "./Profile";
 import Subjects from "./Subjects";
-import TPO from "../TPO/TPO";
-import TPOAbout from "../TPO/TPOAbout";
-import TPOContactUs from "../TPO/TPOContactUs";
-import TPOLogout from "../TPO/TPOLogout";
-import TPOProfile from "../TPO/TPOProfile";
-import TPOResources from "../TPO/TPOResources";
-import TPOBranch from "../TPO/TPOBranch";
 
 function App() {
   const [isStudentLogin, setStudentLogin] = useState(false);
@@ -112,27 +105,6 @@ function App() {
           </Route>
           <Route exact path="/StudentPage/Resources/:room/:branch/:sub">
             <MainContent />
-          </Route>
-          <Route exact path="/TPOPage">
-            <TPO />
-          </Route>
-          <Route exact path="/TPOPage/About">
-            <TPOAbout />
-          </Route>
-          <Route exact path="/TPOPage/ContactUs">
-            <TPOContactUs />
-          </Route>
-          <Route exact path="/TPOPage/Logout">
-            <TPOLogout />
-          </Route>
-          <Route exact path="/TPOPage/Profile">
-            <TPOProfile />
-          </Route>
-          {/* <Route exact path="/StudentPage/Placement/TPOResources">
-            <TPOResources />
-          </Route> */}
-          <Route exact path="/TPOPage/:sub">
-            <TPOBranch />
           </Route>
         </Switch>
       </Router>
