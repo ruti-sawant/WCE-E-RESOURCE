@@ -41,10 +41,10 @@ function DisplayReso(props) {
             Download
           </a>
           <p className="ResoDisplay" style={{ display: "inline-block" }}>
-            Author : {props.data.author.name}
+            Author : {props.data.author.username}
           </p>
           <p className="ResoDisplay" style={{ display: "inline-block" }}>
-            Date : {props.data.timestamp}
+            {props.data.timestamp}
           </p>
         </div>
         <br />
@@ -78,7 +78,7 @@ function DisplayReso(props) {
             Link
           </a>
           <p className="ResoDisplay" style={{ display: "inline-block" }}>
-            Author : {props.data.author.name}
+            Author : {props.data.author.username}
           </p>
           <p className="ResoDisplay" style={{ display: "inline-block" }}>
             {props.data.timestamp}
@@ -92,16 +92,18 @@ function DisplayReso(props) {
 }
 
 function MainContent() {
+  // Link Submit function
+
   function handleLinkSubmit(event) {
     event.preventDefault();
     const resoLink = event.target.resoLink.value;
     const desc = event.target.desc.value;
     const linkName = event.target.linkName.value;
     const author = {
-      name: "Nikhil Danapgol",
-      PRN: "2019BTECS00036",
-      email: "a@b.com",
-      username: "nick"
+      // name: "Nikhil Danapgol",
+      // PRN: "2019BTECS00036",
+      // email: "a@b.com",
+      username: username
     };
 
     const fd = new FormData();
@@ -130,6 +132,8 @@ function MainContent() {
     console.log(resoLink, desc);
   }
 
+  // File Submit function
+
   function handleSubmit(event) {
     event.preventDefault();
     console.log("Submitted");
@@ -142,10 +146,10 @@ function MainContent() {
 
     //personal data
     const author = {
-      name: "Harshal Kodgire",
-      PRN: "2019BTECS00029",
-      email: "a@b.com",
-      username: "harshal.kodgire@walchand"
+      // name: "Harshal Kodgire",
+      // PRN: "2019BTECS00029",
+      // email: "a@b.com",
+      username: username
     };
 
     const fd = new FormData();
@@ -181,6 +185,7 @@ function MainContent() {
   const { branch, sub, room } = useParams();
   const [arr, setArr] = useState([]);
   const [role, setRole] = useState("");
+  const [username, setUSername] = useState("");
 
   useEffect(() => {
     axios
@@ -193,6 +198,8 @@ function MainContent() {
         //to get resources
         else {
           setRole(res.data.decodedData.role);
+          setUSername(res.data.decodedData.username);
+
           axios
             .get(
               "https://afternoon-ocean-57702.herokuapp.com/resources/rooms/" +
