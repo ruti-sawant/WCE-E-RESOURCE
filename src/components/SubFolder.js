@@ -56,37 +56,61 @@ function InsideFolder(props) {
 
 function SubFolder() {
   const [arr, setArr] = useState([]);
+  const [role, setRole] = useState("");
   const { room } = useParams();
+
   useEffect(() => {
     axios
-      .get("https://afternoon-ocean-57702.herokuapp.com/rooms/" + room)
-      .then((data) => {
-        console.log(data.data);
-        const Branches = data.data;
-        for (let i = 0; i < Branches.length; i++) {
-          setArr((arr) =>
-            arr.concat(<InsideFolder branhName={Branches[i].branchName} />)
-          );
+      .get("https://afternoon-ocean-57702.herokuapp.com/login", {
+        withCredentials: true
+      })
+      .then((res) => {
+        console.log(res);
+        if (res.data.loggedIn === false) setRole("invalid");
+        //to get resouces
+        else {
+          setRole(res.data.decodedData.role);
+          axios
+            .get("https://afternoon-ocean-57702.herokuapp.com/rooms/" + room)
+            .then((data) => {
+              console.log(data.data);
+              const Branches = data.data;
+              for (let i = 0; i < Branches.length; i++) {
+                setArr((arr) =>
+                  arr.concat(
+                    <InsideFolder branhName={Branches[i].branchName} />
+                  )
+                );
+              }
+            })
+            .catch((err) => {
+              console.log(err);
+            });
         }
       })
       .catch((err) => {
-        console.log(err);
+        console.log("error");
+        console.log(err.message);
+        setRole("invalid");
       });
   }, []);
+
   return (
     <div>
-      <Sidebar />
-      <div className="content">
-        <p>This is Inner folder of Resources page</p>
-        {/* <InsideFolder branhName="CSE" />
-        <InsideFolder branhName="CIVIL" />
-        <InsideFolder branhName="MECH" />
-        <InsideFolder branhName="ELECTRICAL" />
-        <InsideFolder branhName="IT" />
-        <InsideFolder branhName="ELECTRONICS" /> */}
-        {arr}
-        <AddNewFolder Name="Add" route={room + "/"} />
-      </div>
+      {role === "invalid" ? (
+        <Redirect to="/login" />
+      ) : (
+        <div>
+          <Sidebar />
+          <div className="content">
+            <p>This is Inner folder of Resources page</p>
+            {arr}
+            {role === "faculty" ? (
+              <AddNewFolder Name="Add" route={room + "/"} />
+            ) : null}
+          </div>
+        </div>
+      )}
     </div>
   );
 }

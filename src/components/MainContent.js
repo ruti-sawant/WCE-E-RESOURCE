@@ -2,20 +2,12 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router";
 import Sidebar from "./Sidebar";
 import axios from "axios";
+import { Redirect } from "react-router-dom";
 
 function DisplayReso(props) {
   if (props.data.driveLink) {
     return (
-      <div
-        style={
-          {
-            // height: "105px"
-            // display: "inline-block"
-            //   borderStyle: "solid",
-            //   borderWidth: "1px"
-          }
-        }
-      >
+      <div>
         <img
           // src={require("./folder2.jpg")}
           src="https://lh3.googleusercontent.com/d/1jkOCUuvYogTvKOLB9Bo8cQ1-MQ8G3tgc=s220?authuser=0"
@@ -188,124 +180,143 @@ function MainContent() {
   const [labelName, setLabelName] = useState("Upload Here");
   const { branch, sub, room } = useParams();
   const [arr, setArr] = useState([]);
+  const [role, setRole] = useState("");
 
   useEffect(() => {
     axios
-      .get(
-        "https://afternoon-ocean-57702.herokuapp.com/resources/rooms/" +
-          room +
-          "_" +
-          branch +
-          "_" +
-          sub
-      )
-      .then((data) => {
-        const RecievedResources = data.data;
-        console.log(data.data);
-
-        // console.log(data.data[0].driveLink);
-
-        for (let i = 0; i < RecievedResources.length; i++) {
-          setArr((arr) =>
-            // arr.concat(<ResoFolder roomName={Rooms[i].roomName} />)
-            // arr.concat(<h1>{RecievedResources[i].driveLink.webViewLink}</h1>)
-            arr.concat(<DisplayReso data={RecievedResources[i]} />)
-          );
+      .get("https://afternoon-ocean-57702.herokuapp.com/login", {
+        withCredentials: true
+      })
+      .then((res) => {
+        console.log(res);
+        if (res.data.loggedIn === false) setRole("invalid");
+        //to get resources
+        else {
+          setRole(res.data.decodedData.role);
+          axios
+            .get(
+              "https://afternoon-ocean-57702.herokuapp.com/resources/rooms/" +
+                room +
+                "_" +
+                branch +
+                "_" +
+                sub
+            )
+            .then((data) => {
+              const RecievedResources = data.data;
+              // console.log(data.data);
+              for (let i = 0; i < RecievedResources.length; i++) {
+                setArr((arr) =>
+                  arr.concat(<DisplayReso data={RecievedResources[i]} />)
+                );
+              }
+            })
+            .catch((err) => {
+              console.log(err);
+            });
         }
-
-        //end
       })
       .catch((err) => {
-        console.log(err);
+        console.log("error");
+        console.log(err.message);
+        setRole("invalid");
       });
   }, []);
 
   return (
     <div>
-      <Sidebar />
-      <div className="content">
-        {/* {arr} */}
-        <h1>Upload a file</h1>
-        <hr />
-        <form type="post" onSubmit={handleSubmit}>
-          <div className="UploadResodiv1">
-            <h3 style={{ textAlign: "center" }}>Select a file ...</h3>
-            <label
-              className="UploadResoLabel"
-              htmlFor="uploadButton"
-              // style={{ backgroundImage: "url(./upload2.png)" }}
-            >
-              {labelName}
-            </label>
-            <input
-              type="file"
-              hidden
-              onChange={(event) => {
-                if (event.target.files[0].name)
-                  setLabelName(event.target.files[0].name);
-              }}
-              id="uploadButton"
-              className="UploadResoButton"
-              name="uploadedFile"
-              required
-            />
-            <br />
-          </div>
-          <div className="UploadResodiv2">
-            <label htmlFor="fileName">Enter Name for file : </label>
-            <input type="text" id="fileName" name="fileName" required />
-            <br />
-            <br />
-            {/* <label>Select a room : </label>
+      {role === "invalid" ? (
+        <Redirect to="/login" />
+      ) : (
+        <div>
+          <Sidebar />
+          <div className="content">
+            {/* {arr} */}
+            <h1>Upload a file</h1>
+            <hr />
+            <form type="post" onSubmit={handleSubmit}>
+              <div className="UploadResodiv1">
+                <h3 style={{ textAlign: "center" }}>Select a file ...</h3>
+                <label
+                  className="UploadResoLabel"
+                  htmlFor="uploadButton"
+                  // style={{ backgroundImage: "url(./upload2.png)" }}
+                >
+                  {labelName}
+                </label>
+                <input
+                  type="file"
+                  hidden
+                  onChange={(event) => {
+                    if (event.target.files[0].name)
+                      setLabelName(event.target.files[0].name);
+                  }}
+                  id="uploadButton"
+                  className="UploadResoButton"
+                  name="uploadedFile"
+                  required
+                />
+                <br />
+              </div>
+              <div className="UploadResodiv2">
+                <label htmlFor="fileName">Enter Name for file : </label>
+                <input type="text" id="fileName" name="fileName" required />
+                <br />
+                <br />
+                {/* <label>Select a room : </label>
             <Select className="selectRoom" /> */}
-            <label>Location of upload : </label>
-            <input
-              type="text"
-              disabled
-              value={"StudentPage/Resources/" + room + "/" + branch + "/" + sub}
-            />
+                <label>Location of upload : </label>
+                <input
+                  type="text"
+                  disabled
+                  value={
+                    "StudentPage/Resources/" + room + "/" + branch + "/" + sub
+                  }
+                />
+                <br />
+                <br />
+                <button type="submit">Upload</button>
+              </div>
+            </form>
+            <h1>Upload a link</h1>
+            <hr />
             <br />
+            <form type="post" onSubmit={handleLinkSubmit}>
+              <div style={{ textAlign: "center" }}>
+                <label>Enter link for resource : </label>
+                <input
+                  placeholder="e.g - https://xyz.com"
+                  type="url"
+                  name="resoLink"
+                  required
+                />
+                <br />
+                <br />
+                <label>Enter Name : </label>
+                <input
+                  placeholder="Short Name about link"
+                  type="text"
+                  name="linkName"
+                  required
+                />
+                <br />
+                <br />
+                <label>Enter description : </label>
+                <input placeholder="optional" type="text" name="desc" />
+                <br />
+                <br />
+                <button style={{ display: "inline-block" }} type="submit">
+                  Upload
+                </button>
+              </div>
+            </form>
             <br />
-            <button type="submit">Upload</button>
+            <h1>Resources</h1>
+            <hr />
+            {arr}
           </div>
-        </form>
-        <h1>Upload a link</h1>
-        <hr />
-
-        <form type="post" onSubmit={handleLinkSubmit}>
-          <div style={{ textAlign: "center" }}>
-            <label>Enter link for resource : </label>
-            <input
-              placeholder="e.g - https://xyz.com"
-              type="url"
-              name="resoLink"
-              required
-            />
-            <br />
-            <br />
-            <label>Enter Name : </label>
-            <input
-              placeholder="Short Name about link"
-              type="text"
-              name="linkName"
-              required
-            />
-            <br />
-            <br />
-            <label>Enter description : </label>
-            <input placeholder="optional" type="text" name="desc" />
-            <br />
-            <br />
-            <button style={{ display: "inline-block" }} type="submit">
-              Upload
-            </button>
-          </div>
-        </form>
-        <br />
-        <h1>Resources</h1>
-        <hr />
-        {arr}
-      </div>
+        </div>
+      )}
     </div>
   );
 }

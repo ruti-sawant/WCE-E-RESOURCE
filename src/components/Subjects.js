@@ -57,38 +57,64 @@ function InsideSubject(props) {
 
 function Subjects() {
   const [arr, setArr] = useState([]);
+  const [role, setRole] = useState("");
   const { branch, room } = useParams();
+
   useEffect(() => {
     axios
-      .get(
-        "https://afternoon-ocean-57702.herokuapp.com/rooms/" +
-          room +
-          "/" +
-          branch
-      )
-      .then((data) => {
-        console.log(data.data);
-        const Subjects = data.data;
-        for (let i = 0; i < Subjects.length; i++) {
-          setArr((arr) =>
-            arr.concat(<InsideSubject subName={Subjects[i].subjectName} />)
-          );
+      .get("https://afternoon-ocean-57702.herokuapp.com/login", {
+        withCredentials: true
+      })
+      .then((res) => {
+        console.log(res);
+        if (res.data.loggedIn === false) setRole("invalid");
+        //to get resources
+        else {
+          setRole(res.data.decodedData.role);
+          axios
+            .get(
+              "https://afternoon-ocean-57702.herokuapp.com/rooms/" +
+                room +
+                "/" +
+                branch
+            )
+            .then((data) => {
+              console.log(data.data);
+              const Subjects = data.data;
+              for (let i = 0; i < Subjects.length; i++) {
+                setArr((arr) =>
+                  arr.concat(
+                    <InsideSubject subName={Subjects[i].subjectName} />
+                  )
+                );
+              }
+            })
+            .catch((err) => {
+              console.log(err);
+            });
         }
       })
       .catch((err) => {
-        console.log(err);
+        console.log("error", err.message);
+        setRole("invalid");
       });
   }, []);
+
   return (
     <div>
-      <Sidebar />
-      <div className="content">
-        {/* <InsideSubject subName="OS" />
-        <InsideSubject subName="CN" />
-        <InsideSubject subName="DBMS" /> */}
-        {arr}
-        <AddNewFolder Name="Add" route={room + "/" + branch + "/"} />
-      </div>
+      {role === "invalid" ? (
+        <Redirect to="/login" />
+      ) : (
+        <div>
+          <Sidebar />
+          <div className="content">
+            {arr}
+            {role === "faculty" ? (
+              <AddNewFolder Name="Add" route={room + "/" + branch + "/"} />
+            ) : null}
+          </div>
+        </div>
+      )}
     </div>
   );
 }

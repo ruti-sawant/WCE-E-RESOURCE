@@ -7,10 +7,6 @@ import AddNewFolder from "./AddNewFolder";
 import { Redirect } from "react-router-dom";
 
 function Resources() {
-  // function get() {
-  //   console.log("role", role);
-  //   if (role && role === "invalid") return <Redirect to="./login" />;
-  // }
   const [arr, setArr] = useState([]);
   const [role, setRole] = useState("");
 
@@ -22,7 +18,7 @@ function Resources() {
       .then((res) => {
         console.log(res);
         if (res.data.loggedIn === false) setRole("invalid");
-        //to get resouces
+        //to get resources
         else {
           setRole(res.data.decodedData.role);
           axios
@@ -43,7 +39,6 @@ function Resources() {
       })
       .catch((err) => {
         console.log("error");
-
         console.log(err.message);
         setRole("invalid");
       });
