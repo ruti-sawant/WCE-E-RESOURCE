@@ -4,49 +4,66 @@ import ResoFolder from "./ResoFolder";
 // import Rooms from "./Rooms";
 import axios from "axios";
 import AddNewFolder from "./AddNewFolder";
+import { Redirect } from "react-router-dom";
 
 function Resources() {
+  // function get() {
+  //   console.log("role", role);
+  //   if (role && role === "invalid") return <Redirect to="./login" />;
+  // }
   const [arr, setArr] = useState([]);
-
-  // function addNewFolder() {
-  // setArr((arr) => arr.concat(<ResoFolder roomName="Nick" />));
-  // console.log("arr", arr);
-  // for (let i = 0; i < Rooms.length; i++) {
-  //   setArr((arr) => arr.concat(<ResoFolder roomName={Rooms[i]} />));
-  // }
-  // }
-
-  // for (let i = 0; i < Rooms.length; i++) {
-  //   setArr((arr) => arr.concat(<ResoFolder roomName={Rooms[i]} />));
-  // }
+  const [role, setRole] = useState("");
 
   useEffect(() => {
     axios
-      .get("https://afternoon-ocean-57702.herokuapp.com/rooms")
-      .then((data) => {
-        console.log(data.data);
-        const Rooms = data.data;
-        for (let i = 0; i < Rooms.length; i++) {
-          setArr((arr) =>
-            arr.concat(<ResoFolder roomName={Rooms[i].roomName} />)
-          );
+      .get("https://afternoon-ocean-57702.herokuapp.com/login", {
+        withCredentials: true
+      })
+      .then((res) => {
+        console.log(res);
+        if (res.data.loggedIn === false) setRole("invalid");
+        //to get resouces
+        else {
+          setRole(res.data.decodedData.role);
+          axios
+            .get("https://afternoon-ocean-57702.herokuapp.com/rooms")
+            .then((data) => {
+              console.log(data);
+              const Rooms = data.data;
+              for (let i = 0; i < Rooms.length; i++) {
+                setArr((arr) =>
+                  arr.concat(<ResoFolder roomName={Rooms[i].roomName} />)
+                );
+              }
+            })
+            .catch((err) => {
+              console.log(err);
+            });
         }
       })
       .catch((err) => {
-        console.log(err);
+        console.log("error");
+
+        console.log(err.message);
+        setRole("invalid");
       });
   }, []);
 
   return (
     <div>
-      <Sidebar />
-      <div className="content">
-        <p>This is Resources page</p>
-        {arr}
-        <AddNewFolder Name="Add" route="" />
-      </div>
+      {role === "invalid" ? (
+        <Redirect to="/login" />
+      ) : (
+        <div>
+          <Sidebar />
+          <div className="content">
+            <p>This is Resources page</p>
+            {arr}
+            {role === "faculty" ? <AddNewFolder Name="Add" route="" /> : null}
+          </div>
+        </div>
+      )}
     </div>
   );
 }
-
 export default Resources;
