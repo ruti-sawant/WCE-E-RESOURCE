@@ -103,7 +103,7 @@ function SubFolder() {
         <div>
           <Sidebar />
           <div className="content">
-            <p>This is Inner folder of Resources page</p>
+            <p>This is Branch page</p>
             {arr}
             {role === "faculty" ? (
               <AddNewFolder Name="Add" route={room + "/"} />

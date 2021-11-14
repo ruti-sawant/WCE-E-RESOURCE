@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Sidebar from "./Sidebar";
 import "./ShowYourResources.css";
+import { Redirect } from "react-router-dom";
 import axios from "axios";
 
 function ShowYourResourcesCode(props) {
@@ -87,51 +88,99 @@ function ShowYourResources() {
   };
 
   const [arr, setArr] = useState([]);
+  const [role, setRole] = useState("");
 
   useEffect(() => {
     axios
-      .get(
-        "https://afternoon-ocean-57702.herokuapp.com/resources/users/" +
-          author.username
-      )
-      .then((data) => {
-        const RecievedResources = data.data;
+      .get("https://afternoon-ocean-57702.herokuapp.com/login", {
+        withCredentials: true
+      })
+      .then((res) => {
+        console.log(res);
+        if (res.data.loggedIn === false) setRole("invalid");
+        //to get resources
+        else {
+          setRole(res.data.decodedData.role);
+          if (res.data.decodedData.role === "faculty") {
+            axios
+              .get("https://afternoon-ocean-57702.herokuapp.com/resources/")
+              .then((data) => {
+                const RecievedResources = data.data;
 
-        for (let i = 0; i < RecievedResources.length; i++) {
-          setArr((arr) =>
-            arr.concat(
-              <ShowYourResourcesCode data={RecievedResources[i]} srNO={i + 1} />
-            )
-          );
+                for (let i = 0; i < RecievedResources.length; i++) {
+                  setArr((arr) =>
+                    arr.concat(
+                      <ShowYourResourcesCode
+                        data={RecievedResources[i]}
+                        srNO={i + 1}
+                      />
+                    )
+                  );
+                }
+              })
+              .catch((err) => {
+                console.log(err);
+              });
+          } else {
+            axios
+              .get(
+                "https://afternoon-ocean-57702.herokuapp.com/resources/users/" +
+                  author.username //change to actual username recieved from login route
+              )
+              .then((data) => {
+                const RecievedResources = data.data;
+
+                for (let i = 0; i < RecievedResources.length; i++) {
+                  setArr((arr) =>
+                    arr.concat(
+                      <ShowYourResourcesCode
+                        data={RecievedResources[i]}
+                        srNO={i + 1}
+                      />
+                    )
+                  );
+                }
+              })
+              .catch((err) => {
+                console.log(err);
+              });
+          }
         }
       })
       .catch((err) => {
-        console.log(err);
+        console.log("error");
+        console.log(err.message);
+        setRole("invalid");
       });
   }, []);
 
   return (
     <div>
-      <Sidebar />
-      <div className="content ">
-        <h2 style={{ textAlign: "center", marginBottom: "30px" }}>
-          Resources uploaded by you :-
-        </h2>
-        <br />
-        <tr>
-          <td className="ShowYourResources_td">SrNo</td>
-          <td className="ShowYourResources_td">Resource Name</td>
-          <td className="ShowYourResources_td">View</td>
-          <td className="ShowYourResources_td">Download</td>
-          <td className="ShowYourResources_td">Date</td>
-          <td className="ShowYourResources_td">Room</td>
-          <td className="ShowYourResources_td">Delete</td>
-        </tr>
-        <hr />
-        {arr}
-
-        <br />
-      </div>
+      {role === "invalid" ? (
+        <Redirect to="/login" />
+      ) : (
+        <div>
+          <Sidebar />
+          <div className="content ">
+            <h2 style={{ textAlign: "center", marginBottom: "30px" }}>
+              Resources uploaded by you :-
+            </h2>
+            <br />
+            <tr>
+              <td className="ShowYourResources_td">SrNo</td>
+              <td className="ShowYourResources_td">Resource Name</td>
+              <td className="ShowYourResources_td">View</td>
+              <td className="ShowYourResources_td">Download</td>
+              <td className="ShowYourResources_td">Date</td>
+              <td className="ShowYourResources_td">Room</td>
+              <td className="ShowYourResources_td">Delete</td>
+            </tr>
+            <hr />
+            {arr}
+            <br />
+          </div>
+        </div>
+      )}
     </div>
   );
 }

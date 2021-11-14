@@ -108,6 +108,7 @@ function Subjects() {
         <div>
           <Sidebar />
           <div className="content">
+            <p>This is subject page</p>
             {arr}
             {role === "faculty" ? (
               <AddNewFolder Name="Add" route={room + "/" + branch + "/"} />
