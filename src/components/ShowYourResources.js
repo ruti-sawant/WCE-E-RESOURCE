@@ -72,7 +72,7 @@ function ShowYourResourcesCode(props) {
   ];
 
   return (
-    <div>
+    <div style={{ backgroundColor: "wheat" }}>
       <tr>
         <td className="ShowYourResources_srno">{resources[0].srNO}</td>
         <td className="ShowYourResources_td">{resources[0].resourceName}</td>

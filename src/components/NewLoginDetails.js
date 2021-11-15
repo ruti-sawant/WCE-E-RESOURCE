@@ -82,6 +82,7 @@ function LoginDetails() {
                 marginRight: "20%"
               }}
             >
+              <h1>Add new user</h1>
               <br />
               <form style={{ textAlign: "center" }} onSubmit={handleSubmit}>
                 <label htmlFor="fName">Enter first Name : </label>
