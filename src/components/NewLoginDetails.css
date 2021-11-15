@@ -1,4 +1,5 @@
 .selectRole {
-  width: 30%;
+  /* width: 30%; */
+  height: 25px;
   display: inline-block;
 }
