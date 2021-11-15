@@ -8,23 +8,34 @@ function ShowYourResourcesCode(props) {
   // function for deleting resources
   function handleDelete() {
     const receivedObj = resources[0].idObj;
+    const fd = new FormData();
 
     let tempRoute = "";
 
-    const dataToSend = {};
+    // const dataToSend = {};
+    // if (receivedObj.driveId) {
+    //   tempRoute = "uploadFile";
+    //   dataToSend.mongoId = receivedObj.mongoId;
+    //   dataToSend.driveId = receivedObj.driveId;
+    // } else {
+    //   tempRoute = "uploadLink";
+    //   dataToSend.mongoId = receivedObj.mongoId;
+    // }
+
     if (receivedObj.driveId) {
       tempRoute = "uploadFile";
-      dataToSend.mongoId = receivedObj.mongoId;
-      dataToSend.driveId = receivedObj.driveId;
+      fd.append("mongoId", receivedObj.mongoId);
+      fd.append("driveId", receivedObj.driveId);
     } else {
       tempRoute = "uploadLink";
-      dataToSend.mongoId = receivedObj.mongoId;
+      fd.append("mongoId", receivedObj.mongoId);
     }
 
     axios
-      .delete("https://afternoon-ocean-57702.herokuapp.com/" + tempRoute, {
-        data: dataToSend
-      })
+      .post(
+        "https://afternoon-ocean-57702.herokuapp.com/" + tempRoute + "/delete",
+        fd
+      )
       .then((data) => {
         console.log(data);
         alert("Deleted resource successsfully");
