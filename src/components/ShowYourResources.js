@@ -5,6 +5,7 @@ import { Redirect } from "react-router-dom";
 import axios from "axios";
 
 function ShowYourResourcesCode(props) {
+  // function for deleting resources
   function handleDelete() {
     const receivedObj = resources[0].idObj;
 
@@ -80,12 +81,12 @@ function ShowYourResourcesCode(props) {
 // -------------------------------------------------------------------
 
 function ShowYourResources() {
-  const author = {
-    name: "Harshal Kodgire",
-    PRN: "2019BTECS00029",
-    email: "a@b.com",
-    username: "harshal.kodgire@walchand"
-  };
+  // const author = {
+  //   name: "Harshal Kodgire",
+  //   PRN: "2019BTECS00029",
+  //   email: "a@b.com",
+  //   username: "harshal.kodgire@walchand"
+  // };
 
   const [arr, setArr] = useState([]);
   const [role, setRole] = useState("");
@@ -125,7 +126,7 @@ function ShowYourResources() {
             axios
               .get(
                 "https://afternoon-ocean-57702.herokuapp.com/resources/users/" +
-                  author.username //change to actual username recieved from login route
+                  res.data.decodedData.username //change to actual username recieved from login route
               )
               .then((data) => {
                 const RecievedResources = data.data;
