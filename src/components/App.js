@@ -26,7 +26,6 @@ import TPOBranch from "./TPO/TPOBranch";
 import TPOPlacementInsights from "./TPO/TPOPlacementInsights";
 import TPONotification from "./TPO/TPONotification";
 import TPOInsights from "./TPO/TPOInsights";
-import NewLoginDetails from "./NewLoginDetails";
 
 function App() {
   const [isStudentLogin, setStudentLogin] = useState(false);
@@ -101,9 +100,6 @@ function App() {
           </Route>
           <Route exact path="/StudentPage/ContactUs">
             <ContactUs />
-          </Route>
-          <Route exact path="/StudentPage/NewLogin">
-            <NewLoginDetails />
           </Route>
           <Route exact path="/StudentPage/Logout">
             <Logout />

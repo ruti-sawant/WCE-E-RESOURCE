@@ -32,9 +32,6 @@ function Sidebar() {
         <NavLink activeClassName="active" exact to="/StudentPage/ContactUS">
           Contact Us
         </NavLink>
-        <NavLink activeClassName="active" exact to="/StudentPage/NewLogin">
-          New Login
-        </NavLink>
         <NavLink activeClassName="active" exact to="/StudentPage/Logout">
           Logout
         </NavLink>
