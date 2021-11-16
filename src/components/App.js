@@ -25,7 +25,7 @@ import TPOResources from "./TPO/TPOResources";
 import TPOBranch from "./TPO/TPOBranch";
 import TPOPlacementInsights from "./TPO/TPOPlacementInsights";
 import TPONotification from "./TPO/TPONotification";
-import TPOInsights from "./TPO/TPOInsights";
+import TPOStudentDisplay from "./TPO/TPOStudentDisplay";
 import NewLoginDetails from "./NewLoginDetails";
 
 function App() {
@@ -142,7 +142,7 @@ function App() {
             <TPOResources />
           </Route> */}
           <Route exact path="/TPOPage/TPOInsightsView">
-            <TPOInsights />
+            <TPOStudentDisplay />
           </Route>
           <Route exact path="/TPOPage/Notification">
             <TPONotification />
