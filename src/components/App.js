@@ -21,7 +21,7 @@ import TPOAbout from "./TPO/TPOAbout";
 import TPOContactUs from "./TPO/TPOContactUs";
 import TPOLogout from "./TPO/TPOLogout";
 import TPOProfile from "./TPO/TPOProfile";
-import TPOResources from "./TPO/TPOResources";
+// import TPOResources from "./TPO/TPOResources";
 import TPOBranch from "./TPO/TPOBranch";
 import TPOPlacementInsights from "./TPO/TPOPlacementInsights";
 import TPONotification from "./TPO/TPONotification";
