@@ -12,7 +12,6 @@
     "react-bootstrap": "2.0.2",
     "react-copyright": "0.0.1",
     "react-dom": "17.0.2",
-    "react-flippy": "1.1.0",
     "react-scripts": "4.0.0",
     "react-select": "5.2.0"
   },
