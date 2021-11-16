@@ -114,6 +114,9 @@ function App() {
           <Route exact path="/StudentPage/Resources/:room">
             <SubFolder />
           </Route>
+          <Route exact path="/StudentPage/Resources/other/:room">
+            <MainContent />
+          </Route>
           <Route exact path="/StudentPage/Resources/:room/:branch">
             <Subjects />
           </Route>

@@ -116,9 +116,14 @@ function MainContent() {
     }
 
     // route data
-    fd.append("room", room);
-    fd.append("branch", branch);
-    fd.append("subject", sub);
+    if (room) fd.append("room", room);
+    else fd.append("room", "");
+
+    if (branch) fd.append("branch", branch);
+    else fd.append("branch", "");
+
+    if (sub) fd.append("subject", sub);
+    else fd.append("subject", "");
     axios
       .post("https://afternoon-ocean-57702.herokuapp.com/uploadLink", fd)
       .then((res) => {
@@ -161,9 +166,14 @@ function MainContent() {
     }
 
     // route data
-    fd.append("room", room);
-    fd.append("branch", branch);
-    fd.append("subject", sub);
+    if (room) fd.append("room", room);
+    else fd.append("room", "");
+
+    if (branch) fd.append("branch", branch);
+    else fd.append("branch", "");
+
+    if (sub) fd.append("subject", sub);
+    else fd.append("subject", "");
 
     // console.log(fd);
 
@@ -200,14 +210,22 @@ function MainContent() {
           setRole(res.data.decodedData.role);
           setUSername(res.data.decodedData.username);
 
+          let a = "";
+          let b = "";
+          let c = "";
+
+          if (room) a = room;
+          if (branch) b = branch;
+          if (sub) c = sub;
+
           axios
             .get(
               "https://afternoon-ocean-57702.herokuapp.com/resources/rooms/" +
-                room +
+                a +
                 "_" +
-                branch +
+                b +
                 "_" +
-                sub
+                c
             )
             .then((data) => {
               const RecievedResources = data.data;
@@ -277,7 +295,16 @@ function MainContent() {
                   type="text"
                   disabled
                   value={
-                    "StudentPage/Resources/" + room + "/" + branch + "/" + sub
+                    sub
+                      ? "StudentPage/Resources/" +
+                        room +
+                        "/" +
+                        branch +
+                        "/" +
+                        sub
+                      : branch
+                      ? "StudentPage/Resources/" + room + "/" + branch
+                      : "StudentPage/Resources/" + room
                   }
                 />
                 <br />

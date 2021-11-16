@@ -4,6 +4,27 @@ import { Redirect } from "react-router-dom";
 function ResoFolder(props) {
   const [click, setClick] = useState(false);
 
+  function goto() {
+    let routeUrl = "/StudentPage/Resources/" + props.roomName;
+    let room = props.roomName;
+    console.log(routeUrl);
+    if (
+      room === "Sem 1" ||
+      room === "Sem 2" ||
+      room === "Sem 3" ||
+      room === "Sem 4" ||
+      room === "Sem 5" ||
+      room === "Sem 6" ||
+      room === "Sem 7" ||
+      room === "Sem 8"
+    ) {
+      return <Redirect to={routeUrl} />;
+    } else {
+      routeUrl = "/StudentPage/Resources/other/" + props.roomName;
+      return <Redirect to={routeUrl} />;
+    }
+  }
+
   return (
     <div
       style={{
@@ -24,9 +45,7 @@ function ResoFolder(props) {
           setClick(true);
         }}
       />
-      {click ? (
-        <Redirect to={"/StudentPage/Resources/" + props.roomName} />
-      ) : null}
+      {click ? goto() : null}
       <label
         style={{
           // for adding ellipsis
