@@ -27,6 +27,7 @@ import TPOPlacementInsights from "./TPO/TPOPlacementInsights";
 import TPONotification from "./TPO/TPONotification";
 import TPOStudentDisplay from "./TPO/TPOStudentDisplay";
 import NewLoginDetails from "./NewLoginDetails";
+import StudentPlacementPage from "./StudentPlacementPage";
 
 function App() {
   const [isStudentLogin, setStudentLogin] = useState(false);
@@ -108,6 +109,9 @@ function App() {
           <Route exact path="/StudentPage/Logout">
             <Logout />
           </Route>
+          <Route exact path="/StudentPage/placement">
+            <StudentPlacementPage />
+          </Route>
           <Route exact path="/StudentPage/ShowYourResources">
             <ShowYourResources />
           </Route>
@@ -141,7 +145,7 @@ function App() {
           {/* <Route exact path="/StudentPage/Placement/TPOResources">
             <TPOResources />
           </Route> */}
-          <Route exact path="/TPOPage/TPOInsightsView">
+          <Route exact path="/TPOPage/TPOInsightsView/:fromWhere">
             <TPOStudentDisplay />
           </Route>
           <Route exact path="/TPOPage/Notification">

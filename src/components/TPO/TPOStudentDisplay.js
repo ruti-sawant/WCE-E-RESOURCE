@@ -1,14 +1,15 @@
 import React from "react";
-import Sidebar from "./TPOSlideBar";
+import TPOSidebar from "./TPOSlideBar";
+import StudentSidebar from "../Sidebar";
 import { useEffect, useState } from "react";
 import "./TPOStudentDisplay.css";
 import Flippy, { FrontSide, BackSide } from "react-flippy";
 import axios from "axios";
 import { Redirect } from "react-router-dom";
+import { useParams } from "react-router";
 
 function TPOInsightsCode() {
   const [role, setRole] = useState("");
-
   const [userData, setUserData] = useState({
     name: {
       firstName: "",
@@ -132,9 +133,12 @@ function TPOInsightsCode() {
 }
 
 function TPOStudentDisplay() {
+  const { fromWhere } = useParams();
+  console.log(fromWhere);
+
   return (
     <div>
-      <Sidebar />
+      {fromWhere === "student" ? <StudentSidebar /> : <TPOSidebar />}
       <div className="content">
         <h1 style={{ textAlign: "center" }}>PlacementInsights</h1>
         <br />
