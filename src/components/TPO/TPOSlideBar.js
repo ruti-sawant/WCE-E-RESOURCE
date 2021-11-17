@@ -20,7 +20,11 @@ function Sidebar() {
         >
           Placement Insights
         </NavLink>
-        <NavLink activeClassName="active" exact to="/TPOPage/TPOInsightsView">
+        <NavLink
+          activeClassName="active"
+          exact
+          to="/TPOPage/TPOInsightsView/TPO"
+        >
           View Insights
         </NavLink>
         <NavLink activeClassName="active" exact to="/TPOPage/Notification">
