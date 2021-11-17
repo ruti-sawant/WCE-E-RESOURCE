@@ -8,8 +8,62 @@ import axios from "axios";
 import { Redirect } from "react-router-dom";
 import { useParams } from "react-router";
 
+function SingleCard(props) {
+  console.log("in single card", props.data);
+  const placementDetails = {
+    name: props.data.name.firstName + " " + props.data.name.lastName,
+    branch: props.data.branch,
+    yearOfPassing: props.data.yearOfPassing,
+    company: props.data.company,
+    interViewExperience: props.data.driveLink.webViewLink,
+    linkedinProfile: props.data.linkedinProfile
+  };
+  return (
+    <div class="TPOColumn">
+      <div class="card">
+        <Flippy
+          flipOnHover={true} // default false
+          flipOnClick={false} // default false
+          flipDirection="horizontal" // horizontal or vertical
+          ref={(r) => (this.flippy = r)} // to use toggle method like this.flippy.toggle()
+          // if you pass isFlipped prop component will be controlled component.
+          // and other props, which will go to div
+          style={{ width: "100%", height: "100%" }} /// these are optional style, it is not necessary
+        >
+          <FrontSide
+            style={{
+              backgroundColor: "white"
+            }}
+          >
+            <h3>{placementDetails.name}</h3>
+            <hr />
+            <h3>Company : {placementDetails.company}</h3>
+            <hr />
+            <h3>Branch : {placementDetails.branch}</h3>
+          </FrontSide>
+          <BackSide style={{ backgroundColor: "white" }}>
+            <h3>Year of Passing : {placementDetails.yearOfPassing}</h3>
+            <hr />
+            <h3>
+              <a href={placementDetails.interViewExperience}>
+                Interview Experience
+              </a>
+            </h3>
+
+            <hr />
+            <h3>
+              <a href={placementDetails.linkedinProfile}>Linkedin Profile</a>
+            </h3>
+          </BackSide>
+        </Flippy>
+      </div>
+    </div>
+  );
+}
+
 function TPOInsightsCode() {
   const [role, setRole] = useState("");
+  const [cardArray, setCardArray] = useState([]);
   const [userData, setUserData] = useState({
     name: {
       firstName: "",
@@ -28,32 +82,6 @@ function TPOInsightsCode() {
     timestamp: ""
   });
 
-  const placementDetails = [
-    {
-      name: "Nikhil Danapgol",
-      branch: "CSE",
-      yearOfPassing: "2023",
-      company: "Unknown",
-      interViewExperience: "dont know",
-      linkedinProfile: "abc"
-    },
-    {
-      name: "Rutwik Sawant",
-      branch: "CSE",
-      yearOfPassing: "2023",
-      company: "Google",
-      interViewExperience: "dont know",
-      linkedinProfile: "xyz"
-    },
-    {
-      name: "Nikhil Danapgol",
-      branch: "CSE",
-      yearOfPassing: "2023",
-      company: "Unknown",
-      interViewExperience: "dont know",
-      linkedinProfile: "abc"
-    }
-  ];
   useEffect(() => {
     axios
       .get("https://afternoon-ocean-57702.herokuapp.com/login", {
@@ -69,7 +97,14 @@ function TPOInsightsCode() {
             .get("https://afternoon-ocean-57702.herokuapp.com/placement")
             .then((data) => {
               console.log("Recived data :", data);
-              setUserData(data.data);
+              let receivedData = data.data;
+              for (let i = 0; i < receivedData.length; i++) {
+                console.log(receivedData[i]);
+                setCardArray((arr) =>
+                  arr.concat(<SingleCard data={receivedData[i]} />)
+                );
+              }
+              // setUserData(data.data);
             })
             .catch((err) => {
               console.log("error");
@@ -90,41 +125,9 @@ function TPOInsightsCode() {
       ) : (
         <div>
           <div class="TPORow">
-            <div class="TPOColumn">
-              <div class="card">
-                <Flippy
-                  flipOnHover={true} // default false
-                  flipOnClick={false} // default false
-                  flipDirection="horizontal" // horizontal or vertical
-                  ref={(r) => (this.flippy = r)} // to use toggle method like this.flippy.toggle()
-                  // if you pass isFlipped prop component will be controlled component.
-                  // and other props, which will go to div
-                  style={{ width: "100%", height: "220px" }} /// these are optional style, it is not necessary
-                >
-                  <FrontSide
-                    style={{
-                      backgroundColor: "white"
-                    }}
-                  >
-                    <h3>{placementDetails[0].name}</h3>
-                    <h3>Company : {placementDetails[0].company}</h3>
-                    <h3>Branch : {placementDetails[0].branch}</h3>
-                  </FrontSide>
-                  <BackSide style={{ backgroundColor: "white" }}>
-                    <h3>
-                      Year of Passing : {placementDetails[0].yearOfPassing}
-                    </h3>
-                    <h3>
-                      Interview Experience :{" "}
-                      {placementDetails[0].interViewExperience}
-                    </h3>
-                    <h3>
-                      Linkedin Profile : {placementDetails[0].linkedinProfile}
-                    </h3>
-                  </BackSide>
-                </Flippy>
-              </div>
-            </div>
+            {/* <SingleCard /> */}
+
+            {cardArray}
           </div>
         </div>
       )}
