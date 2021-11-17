@@ -154,6 +154,9 @@ function App() {
           <Route exact path="/TPOPage/TPOPlacementInsights">
             <TPOPlacementInsights />
           </Route>
+          <Route exact path="/TPOPage/TPOResources/:fromWhere">
+            <TPOBranch />
+          </Route>
           <Route exact path="/TPOPage/:sub">
             <TPOBranch />
           </Route>

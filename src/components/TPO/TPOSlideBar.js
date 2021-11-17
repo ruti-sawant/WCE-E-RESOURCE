@@ -10,7 +10,7 @@ function Sidebar() {
         <NavLink activeClassName="active" exact to="/TPOPage/Profile">
           Profile
         </NavLink>
-        <NavLink activeClassName="active" exact to="/TPOPage/TPOResources">
+        <NavLink activeClassName="active" exact to="/TPOPage/TPOResources/TPO">
           Resources
         </NavLink>
         <NavLink

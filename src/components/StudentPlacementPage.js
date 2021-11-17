@@ -2,40 +2,24 @@ import React, { useState, useEffect } from "react";
 import Sidebar from "./Sidebar";
 import { Redirect } from "react-router-dom";
 import axios from "axios";
-
-function timeSince(date) {
-  var seconds = Math.floor((new Date() - date) / 1000);
-  var interval = seconds / 31536000;
-  if (interval > 1) {
-    return Math.floor(interval) + " years ago";
-  }
-  interval = seconds / 2592000;
-  if (interval > 1) {
-    return Math.floor(interval) + " months ago";
-  }
-  interval = seconds / 86400;
-  if (interval > 1) {
-    return Math.floor(interval) + " days ago";
-  }
-  interval = seconds / 3600;
-  if (interval > 1) {
-    return Math.floor(interval) + " hours ago";
-  }
-  interval = seconds / 60;
-  if (interval > 1) {
-    return Math.floor(interval) + " minutes ago";
-  }
-  return Math.floor(seconds) + " seconds ago";
-}
+import { useParams } from "react-router";
+import "./StudentPlacementPage.css";
 
 function StudentPlacementPage() {
   function handleViewInsights() {
-    setClick(true);
+    setClick2(true);
   }
 
-  const [click, setClick] = useState(false);
+  function handlePlacementResource() {
+    setClick1(true);
+  }
+
+  const [click1, setClick1] = useState(false);
+  const [click2, setClick2] = useState(false);
   const [role, setRole] = useState("");
   const [notificationArray, setNotificationArray] = useState([]);
+
+  const { fromWhere } = useParams();
 
   useEffect(() => {
     axios
@@ -91,12 +75,80 @@ function StudentPlacementPage() {
           <br />
           <hr />
           <br />
-          <button onClick={handleViewInsights}>View Placement Insights</button>
-          {click ? <Redirect to="/TPOPage/TPOInsightsView/student" /> : null}
+
+          <div
+            style={{ display: "inline-block" }}
+            onClick={handlePlacementResource}
+          >
+            <img
+              src="https://lh3.googleusercontent.com/d/1jkOCUuvYogTvKOLB9Bo8cQ1-MQ8G3tgc=s220?authuser=0"
+              alt="img"
+              width="300px"
+              height="300px"
+              className="PlacementResourceDiv"
+              onClick={() => {
+                console.log("Folder opened");
+              }}
+              id="placementResource"
+            />
+            <label
+              htmlFor="placementResource"
+              className="StudentPlacementPageResourceLabel PlacementResourceDiv"
+            >
+              View Placement Resources
+            </label>
+          </div>
+
+          <div style={{ display: "inline-block" }} onClick={handleViewInsights}>
+            <img
+              src="https://lh3.googleusercontent.com/d/1av-HJ4V5S_twpUXN7Z6JAlHpZ_645Rif=s220?authuser=0"
+              alt="img"
+              width="300px"
+              height="220px"
+              className="ViewInsightsDiv"
+              onClick={() => {
+                console.log("Folder opened");
+              }}
+              style={{ marginBottom: "40px", marginTop: "40px" }}
+            />
+            <label
+              htmlFor="placementResource"
+              className="StudentPlacementPageResourceLabel ViewInsightsDiv"
+            >
+              View Placement Insights
+            </label>
+          </div>
+          {click1 ? <Redirect to="/TPOPage/TPOResources/student" /> : null}
+          {click2 ? <Redirect to="/TPOPage/TPOInsightsView/student" /> : null}
         </div>
       </div>
     </div>
   );
+}
+
+function timeSince(date) {
+  var seconds = Math.floor((new Date() - date) / 1000);
+  var interval = seconds / 31536000;
+  if (interval > 1) {
+    return Math.floor(interval) + " years ago";
+  }
+  interval = seconds / 2592000;
+  if (interval > 1) {
+    return Math.floor(interval) + " months ago";
+  }
+  interval = seconds / 86400;
+  if (interval > 1) {
+    return Math.floor(interval) + " days ago";
+  }
+  interval = seconds / 3600;
+  if (interval > 1) {
+    return Math.floor(interval) + " hours ago";
+  }
+  interval = seconds / 60;
+  if (interval > 1) {
+    return Math.floor(interval) + " minutes ago";
+  }
+  return Math.floor(seconds) + " seconds ago";
 }
 
 export default StudentPlacementPage;

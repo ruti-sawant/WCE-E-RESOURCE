@@ -1,31 +1,17 @@
 import React, { useState, useEffect } from "react";
 import Sidebar from "./TPOSlideBar";
+import TPOSidebar from "./TPOSlideBar";
+import StudentSidebar from "../Sidebar";
 import ResoFolder from "./TPOResoFolder";
 // import Rooms from "./Rooms";
 import axios from "axios";
 
 function Resources() {
-  // const [arr, setArr] = useState([]);
-  // useEffect(() => {
-  //   axios
-  //     .get("https://afternoon-ocean-57702.herokuapp.com/rooms")
-  //     .then((data) => {
-  //       console.log(data.data);
-  //       const Rooms = data.data;
-  //       for (let i = 0; i < Rooms.length; i++) {
-  //         setArr((arr) =>
-  //           arr.concat(<ResoFolder roomName={Rooms[i].roomName} />)
-  //         );
-  //         // console.log(arr);
-  //       }
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  // }, []);
-
+  const { fromWhere } = useParams();
+  console.log(fromWhere);
   return (
     <div>
+      {fromWhere === "student" ? <StudentSidebar /> : <TPOSidebar />}
       <Sidebar />
       <div className="content">
         <p>This is Resources page</p>

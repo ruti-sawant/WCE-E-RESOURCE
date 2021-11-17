@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import Sidebar from "./TPOSlideBar";
-// import { useParams } from "react-router";
+import { useParams } from "react-router";
 import { Redirect } from "react-router-dom";
+import TPOSidebar from "./TPOSlideBar";
+import StudentSidebar from "../Sidebar";
+
 // import axios from "axios";
 // import AddNewFolder from "./AddNewFolder";
 
@@ -55,32 +58,12 @@ function InsideSubject(props) {
 }
 
 function Subjects() {
-  // const [arr, setArr] = useState([]);
-  // const { branch, room } = useParams();
-  // useEffect(() => {
-  //   axios
-  //     .get(
-  //       "https://afternoon-ocean-57702.herokuapp.com/rooms/" +
-  //         room +
-  //         "/" +
-  //         branch
-  //     )
-  //     .then((data) => {
-  //       console.log(data.data);
-  //       const Subjects = data.data;
-  //       for (let i = 0; i < Subjects.length; i++) {
-  //         setArr((arr) =>
-  //           arr.concat(<InsideSubject subName={Subjects[i].subjectName} />)
-  //         );
-  //       }
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  // }, []);
+  const { fromWhere } = useParams();
+  console.log(fromWhere);
+
   return (
     <div>
-      <Sidebar />
+      {fromWhere === "student" ? <StudentSidebar /> : <TPOSidebar />}
       <div className="content">
         <InsideSubject subName="CSE" />
         <InsideSubject subName="IT" />
@@ -88,9 +71,6 @@ function Subjects() {
         <InsideSubject subName="Civil" />
         <InsideSubject subName="Mechanical" />
         <InsideSubject subName="Electrical" />
-
-        {/* {arr} */}
-        {/* <AddNewFolder Name="Add" route={room + "/" + branch + "/"} /> */}
       </div>
     </div>
   );
